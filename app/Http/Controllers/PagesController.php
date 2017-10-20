@@ -33,5 +33,9 @@ class PagesController extends Controller
     {
         return view('pages.findjob');
     }
+    public function form()
+    {
+        return view('pages.form');
+    }
 
 }

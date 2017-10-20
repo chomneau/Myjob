@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\AdminResetPasswordNotification;
+use App\Category;
 
 class Admin extends Authenticatable
 {
@@ -35,7 +36,7 @@ class Admin extends Authenticatable
     }
 
     //add one to many relationship
-    public function categories(){
+    public function category(){
         return $this->hasMany('App\Category');
     }
 }

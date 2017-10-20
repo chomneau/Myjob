@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,17 +15,40 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/form', 'PagesController@form');
+Route::post('/form', 'PagesController@store');
+
 Auth::routes();
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/contact', 'PagesController@getContact');
 Route::get('/findjob', 'PagesController@getFindJob');
 Route::get('/postjob', 'PagesController@getPostjob');
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
+//Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
+//Route::post('/home/profile', 'HomeController@createProfile')->name('home.profile.submit');
+
+Route::get('/home', 'HomeController@index')->name('home.profile');
+
+
+
+
 Route::get('/home/job', 'HomeController@showJobForm')->name('home.jobform');
 Route::post('/home/job', 'HomeController@createjob')->name('home.jobform.submit');
 
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+
+//user route controller
+Route::get('/user/profile', 'ProfileController@index')->name('user.profile');
+
+Route::resource('/user', 'ProfileController');
+
+
+
+
+
+
+
 
 Route::prefix('admin')->group(function (){
 
@@ -35,14 +58,15 @@ Route::prefix('admin')->group(function (){
     Route::get('/postjob', 'AdminController@showPostjobForm')->name('admin.postjob');
     Route::post('/postjob', 'AdminController@postjob')->name('admin.postjob.submit');
 
-    //view location
-    Route::get('/viewLocation', 'postsController@viewLocation')->name('admin.viewLocation');
-    //view location
-    Route::get('/category', 'CategoryController@category')->name('admin.category');
+
+    //view category
+    Route::get('/showcategory', 'CategoryController@showCategory')->name('admin.showcategory');
+    Route::get('/category', 'CategoryController@showCategoryForm')->name('admin.category');
+    Route::post('/category', 'CategoryController@store')->name('admin.showcategory.submit');
+    Route::resource('/category', 'CategoryController');
 
 
-    Route::get('/joblocation', 'postsController@showJobLocationForm')->name('admin.joblocation');
-    Route::post('/joblocation', 'postsController@storeLocation')->name('admin.storeLocation.submit');
+
 
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');

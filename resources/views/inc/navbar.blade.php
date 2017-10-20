@@ -12,32 +12,54 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
                     <ul class="nav navbar-nav" style="margin-left: 20%">
-                        <li>
-                            <a href="../">Home</a>
-                        </li>
+                        @if (Auth::guest() || Auth::guard('web')->check())
+                            <li>
+                                <a href="../">Home</a>
+                            </li>
 
-                        <li>
-                            <a href="/findjob">Find Job</a>
-                        </li>
+                            <li>
+                                <a href="/findjob">Find Job</a>
+                            </li>
 
 
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Training <span class="caret"></span></a>
-                            <ul class="dropdown-menu" aria-labelledby="download">
-                                <li><a href="#">Training Resources</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Human Resource</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">How to Find jobs</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Training <span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="download">
+                                    <li><a href="#">Training Resources</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Human Resource</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">How to Find jobs</a></li>
 
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="/about">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/about">About</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        @elseif(Auth::guard('admin')->check())
+                            <li>
+                                <a href="../admin">Dashboard</a>
+                            </li>
+
+                            <li>
+                                <a href="/findjob">Find Job</a>
+                            </li>
+
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Job Controller <span class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="download">
+                                    <li><a href="{{ route('admin.showcategory') }}">Category</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Job location</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Salary Rank</a></li>
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -53,7 +75,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="../home"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> my Cv</a></li>
                                     <li class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -77,7 +101,13 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="../home"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                                    <li><a href="{{ route('home.profile') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+                                    <li class="divider"></li>
+
+                                    <li><a href="../home/mycv"><i class="fa fa-user" aria-hidden="true"></i> My CV</a></li>
+                                    <li class="divider"></li>
+
+                                    <li><a href="../home/applied"><i class="fa fa-user" aria-hidden="true"></i> Job applied</a></li>
                                     <li class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"

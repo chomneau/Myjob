@@ -7,10 +7,14 @@
         <div class="row">
             {{--<div class="col-md-3 pull-left">--}}
                 {{--@include('admin.adminSidebar')--}}
+
+
             {{--</div>--}}
 
-            <div class="col-md-12">
-                @include('admin.post-job-form')
+            <div class="col-md-12 offset-3">
+
+                @include('category.category-table')
+                @include('category.category-form')
             </div>
 
             @include('inc.logoSlider')
@@ -23,3 +27,6 @@
 
 
 @endsection
+
+
+

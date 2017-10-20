@@ -15,14 +15,15 @@
                 </a></li>
             <li>
             <li>
+                <a href="{{ route('admin.category') }}"><i class="fa fa-address-book-o" aria-hidden="true"></i>
+                    category</a></li>
+            <li>
                 <a href="{{ route('admin.postjob') }}"><i class="fa fa-pencil" aria-hidden="true"></i>
                     Post a job</a></li>
             <li>
                 <a href="{{ route('admin.viewLocation') }}"><i class="fa fa-address-book-o" aria-hidden="true"></i>
                     View job location</a></li>
-            <li>
-                <a href="{{ route('admin.category') }}"><i class="fa fa-address-book-o" aria-hidden="true"></i>
-                    category</a></li>
+
 
             <li><a href="#"><i class="fa fa-envelope-open-o" aria-hidden="true"></i>
                     View Company</a></li>

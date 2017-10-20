@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-class Job extends Model
+
+class Profile extends Model
 {
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 }
