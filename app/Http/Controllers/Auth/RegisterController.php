@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Experience;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Profile;
 
 class RegisterController extends Controller
 {
@@ -62,10 +64,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        Profile::create([
+            'user_id' => $user->id,
+        ]);
+
+//        Experience::create([
+//            'user_id' => $user->id,
+//        ]);
+        return $user;
+
     }
 }

@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Profile;
 use Auth;
+use Session;
 
 
 class ProfileController extends Controller
@@ -45,33 +46,6 @@ class ProfileController extends Controller
     {
 
         //return 123;
-        $this->validate($request, [
-            'first_Name' => 'required|max:255',
-            'last_Name' => 'required|max:255',
-            'sex' => 'required',
-            'email' => 'required|email',
-            'date_of_birth' => 'required|max:255',
-            'phone' => 'required|number',
-            'location' => 'required',
-            'about_me' => 'required',
-        ]);
-
-        $userprofile = new Profile();
-
-        $userprofile->first_name = $request->input('firstName');
-        $userprofile->last_name = $request->input('lastName');
-        $userprofile->sex = $request->input('sex');
-        $userprofile->DateOfBirth = $request->input('dateofbirth');
-        $userprofile->email = $request->input('email');
-        $userprofile->phone = $request->input('phone');
-        $userprofile->address = $request->input('address');
-        $userprofile->location = $request->input('location');
-        $userprofile->bio = $request->input('about_me');
-        $userprofile->user_id = auth()->user()->id;
-
-        $userprofile->save();
-
-        return redirect('user/profile')->with('success', 'your profile is updated!');
 
     }
 
@@ -83,7 +57,7 @@ class ProfileController extends Controller
      */
     public function show()
     {
-
+        //return 12345;
     }
 
     /**
@@ -104,9 +78,61 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'sex' => 'required',
+            'email' => 'required|email',
+            'date_of_birth' => 'required',
+            'phone' => 'required',
+            'location' => 'required'
+
+        ]);
+
+        $user = Auth::user();
+
+        //upload image for user
+        if($request->hasFile('avatar'))
+        {
+            $avatar = $request->avatar;
+            $avatar_new_name = time().$avatar->getClientOriginalName();
+            $avatar->move('uploads/avatar', $avatar_new_name);
+            $user->profile->avatar = 'uploads/avatar/'.$avatar_new_name;
+            $user->profile->save();
+        }
+
+
+        $user->email = $request->email;
+        $user->name = $request->firstName;
+
+        $user->profile->first_name = $request->firstName;
+        $user->profile->last_name = $request->lastName;
+        $user->profile->sex = $request->sex;
+        $user->profile->date_of_birth = $request->date_of_birth;
+        $user->profile->phone = $request->phone;
+        $user->profile->address = $request->address;
+        $user->profile->location = $request->location;
+        $user->profile->bio = $request->bio;
+        $user->profile->user_id = auth()->user()->id;
+
+
+        $user->save();
+        $user->profile->save();
+
+        if($request->has('password'))
+        {
+            $user->password = bcrypt($request->password);
+            $user->save();
+        }
+
+        Session::flash('success', 'You successfully updated your profile');
+
+        return redirect('home');
+
+
+
     }
 
     /**

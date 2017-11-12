@@ -10,27 +10,28 @@
                 <div class="col-lg-4 col-sm-12">
                     <div class="panel-body" >
                         <ul id="item-list" style="padding-left: 5px; ">
+                        {{--@if($user->count()>0)--}}
+                            {{--@foreach($user as $users)--}}
+                                    <li><a href="#" class="text-capitalize" style="font-size:20px "><i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }}</a></li>
+                                    <li>
+                                        <a href="#">
+                                            {{--Sex : {{ $users->profile->first_name }}--}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
 
-                            <li><a href="#" class="text-capitalize" style="font-size:20px "><i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }}</a></li>
-                            <li>
+                                            {{--Age : {{$user->name}}--}}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
 
-                                <a href="{{route('user.profile')}}">
-
-                                    Sex :
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-
-                                    Age :
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('user.create') }}">
-
-                                    Email :
-                                </a>
-                            </li>
+                                            Email :
+                                        </a>
+                                    </li>
+                                {{--@endforeach--}}
+                            {{--@endif--}}
                         </ul>
                     </div>
 

@@ -40,8 +40,22 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 
 //user route controller
 Route::get('/user/profile', 'ProfileController@index')->name('user.profile');
+Route::post('/user/profile/update', 'ProfileController@update')->name('user.profile.update');
+
 
 Route::resource('/user', 'ProfileController');
+
+//build CV
+Route::resource('/mycv', 'CvController');
+Route::post('/mycv/update/{id}', 'CvController@update')->name('mycv.update');
+Route::get('/mycv/delete/{id}', 'CvController@destroy')->name('mycv.delete');
+
+//user education route
+
+Route::resource('/education', 'UserEducationController');
+Route::post('/education/update/{id}', 'UserEducationController@update')->name('education.update');
+Route::get('/education/delete/{id}', 'UserEducationController@destroy')->name('education.delete');
+
 
 
 
@@ -65,7 +79,8 @@ Route::prefix('admin')->group(function (){
     Route::post('/category', 'CategoryController@store')->name('admin.showcategory.submit');
     Route::resource('/category', 'CategoryController');
 
-
+//admin dushboard
+    Route::resource('/createjob', 'JobController');
 
 
     Route::get('/', 'AdminController@index')->name('admin.dashboard');

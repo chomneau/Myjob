@@ -9,32 +9,21 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Job') }}</title>
+
     <link href="https://fonts.googleapis.com/css?family=Abel|Anton|Squada+One" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
 
-    <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=7g5tyr05gk117hrd91y4rj4pw1hxwsr75y5gvypori9or5la"></script>
+    {{--Toastr notification--}}
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
-    <script>
-        tinymce.init({ selector:'textarea',
-            plugins: "link",
-            menu: 'disable',
-            plugins: "lists",
-
-        });
-
-    </script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/themestyle.css') }}" rel="stylesheet">
     <script type="text/javascript" src="{{URL::asset('assets/js/action.js')}}"></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
 
-
-
-
-
-
+    @yield('styles')
 
 
 </head>
@@ -45,8 +34,25 @@
 
     @yield('content')
 
+
+
+     @include('inc.footer')
+
+
+
     <!-- Scripts -->
+    @yield('scripts')
     <script src="{{ asset('js/app.js') }}"></script>
-    @include('inc.footer')
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+
+        <script>
+            @if(Session::has('success'))
+                toastr.success("{{Session::get('success')}}")
+            @endif
+
+            //$('#date').datepicker()
+        </script>
+
 </body>
 </html>

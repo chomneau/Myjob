@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Profile;
+use App\Experience;
 
 class User extends Authenticatable
 {
@@ -32,7 +33,18 @@ class User extends Authenticatable
 
     public function Profile()
     {
-        $this->hasOne('App\Profile');
+        return $this->hasOne('App\Profile');
+    }
+
+    //relationship for user experience
+    public function experience(){
+        return $this->hasMany('App\Experience');
+    }
+
+    //relationship for user education (cv)
+
+    public function education(){
+        return $this->hasMany('App\UserEducation');
     }
 
 }

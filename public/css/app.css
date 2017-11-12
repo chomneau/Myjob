@@ -44,12 +44,42 @@ li {
 .suga-slide {
   float: left;
   position: relative;
-  margin-left: 16;
+  margin-left: 16px;
   padding-right: 5px;
 }
 
 img {
   border-radius: 3px;
+}
+
+.panel-body ul#item-list-display {
+  display: block;
+  padding-left: 5px;
+}
+
+.panel-body li {
+  font-size: 16px;
+  border-bottom: dashed 0.4px;
+  border-color: #0DC2C9;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.about-me {
+  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left: 20px;
+  margin-right: 25px;
+}
+
+.panel-body .view-cv p {
+  font-size: 16px;
+}
+
+.panel-body .cv-date {
+  font-size: 16px;
+  color: #1f648b;
+  padding-top: 20px;
 }
 
 /*!

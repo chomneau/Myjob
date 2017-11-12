@@ -11,4 +11,9 @@ class Profile extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    protected $fillable = [
+        'avatar','user_id', 'first_name', 'last_name', 'sex',
+        'date_of_birth', 'phone', 'address', 'location'
+    ];
 }

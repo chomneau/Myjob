@@ -1,3 +1,62 @@
+.description ul li{
+    margin-left: 2em;
+    font-size: 15px;
+    list-style-type:initial;
+    line-height:120%;
+    margin-bottom: 2px;
+    padding: 0;
+    border-bottom: 0;
+}
+
+
+/*add popup form style*/
+.center {
+    margin-top:50px;
+}
+
+.modal-header {
+    padding-bottom: 5px;
+}
+
+.modal-footer {
+    padding: 0;
+}
+
+.modal-footer .btn-group button {
+    height:40px;
+    border-top-left-radius : 0;
+    border-top-right-radius : 0;
+    border: none;
+    border-right: 1px solid #ddd;
+}
+
+.modal-footer .btn-group:last-child > button {
+    border-right: 0;
+}
+
+
+
+
+.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar {
+    display: inline-block;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    width: 213px;
+}
+.kv-reqd {
+    color: red;
+    font-family: monospace;
+    font-weight: normal;
+}
+
 
 .photo-profile{
     background-color: #0DC2C9;
@@ -53,37 +112,54 @@
     margin-left: 20px;
 }
 .item-list{
-    font-size: 13px;
+    /*font-size: 13px;*/
     display: block;
     text-decoration: none;
     list-style-type: none;
 }
+/*ul#item-list-display{*/
+    /*color: #F8F4F4;*/
+    /*font-size: 18px;*/
+    /*text-decoration: none;*/
+    /*display: block;*/
+    /*line-height: 20px;*/
+    /*padding: 10px;*/
+    /*border-bottom: dashed 0.5px;*/
+    /*border-color: #0DC2C9;*/
+    /*list-style-type: none;*/
+/*}*/
+
 .item-list a{
     color: #F8F4F4;
     font-size: 18px;
     text-decoration: none;
     display: block;
-    line-height: 20px;
-    padding: 10px;
+    line-height: 10px;
+    padding: 6px;
     border-bottom: dashed 0.5px;
     border-color: #0DC2C9;
 }
-#item-list{
-    font-size: 19px;
-    display: block;
-    text-decoration: none;
-    list-style-type: none;
-}
-#item-list a{
-    color: #505660;
+.list-style li{
     font-size: 16px;
-    text-decoration: none;
-    display: block;
-    line-height: 30px;
-    padding: 10px;
     border-bottom: dashed 0.5px;
-    border-color: #1CE1E8 ;
+    border-color: #0DC2C9;
 }
+/*#item-list{*/
+    /*font-size: 19px;*/
+    /*display: block;*/
+    /*text-decoration: none;*/
+    /*list-style-type: none;*/
+/*}*/
+/*#item-list a{*/
+    /*color: #505660;*/
+    /*font-size: 16px;*/
+    /*text-decoration: none;*/
+    /*display: block;*/
+    /*line-height: 30px;*/
+    /*padding: 10px;*/
+    /*border-bottom: dashed 0.5px;*/
+    /*border-color: #1CE1E8 ;*/
+/*}*/
 
 
 hr.style-one {

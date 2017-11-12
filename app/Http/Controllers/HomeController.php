@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Job;
+
 use Auth;
 use App\User;
-use App\Userprofile;
+use App\Profile;
 use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
 use Illuminate\Http\Request;
 
@@ -24,7 +24,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home')->with('user', Auth::user());
+         return view('home')->with('user', Auth::user());
     }
 
 }
