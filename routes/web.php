@@ -79,8 +79,17 @@ Route::prefix('admin')->group(function (){
     Route::post('/category', 'CategoryController@store')->name('admin.showcategory.submit');
     Route::resource('/category', 'CategoryController');
 
-//admin dushboard
+    //admin dushboard
     Route::resource('/createjob', 'JobController');
+
+    //company controller
+    Route::resource('/company', 'CompanyController');
+    Route::get('/company/profile/{id}', 'CompanyController@show')->name('admin.company.profile');
+    Route::post('/company/update/{id}', 'CompanyController@update')->name('company.update');
+
+    Route::resource('/company/note', 'NoteController');
+    Route::post('/company/note/{id}', 'NoteController@store')->name('company.note');
+
 
 
     Route::get('/', 'AdminController@index')->name('admin.dashboard');

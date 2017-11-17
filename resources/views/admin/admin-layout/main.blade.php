@@ -5,7 +5,10 @@
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--Toastr notification--}}
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
     <title>Admin | Job </title>
     @include('admin.style.cs-admin')
@@ -28,6 +31,7 @@
 @include('admin.inc.footer')
 <!-- jQuery -->
 @include('admin.style.js-admin')
+<script src="{{ asset('js/toastr.min.js') }}"></script>
 
 </body>
 </html>

@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         $category->name = $request->input('category');
 //        $category->admin_id = $request->input('adminid');
-       // $category->admin_id = Auth::guard()->admin()->id;
+       // $category->admin_id = Auth::user()->id;
         $category->save();
 
         return redirect('admin/showcategory')->with('success', 'location added');

@@ -7,15 +7,17 @@
         <div class="clearfix"></div>
 
         <!-- menu profile quick info -->
+        @if(Auth::guard('admin')->check())
         <div class="profile clearfix">
             <div class="profile_pic">
                 <img src="{{ asset('images/img.jpg') }}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Chomneau</h2>
+                <h2>{{ Auth::user()->name }}</h2>
             </div>
         </div>
+        @endif
         <!-- /menu profile quick info -->
 
         <br />
@@ -32,8 +34,9 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> Job Dashboard <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('createjob.create') }}">Create new job</a></li>
-                            <li><a href="{{ route('createjob.index') }}">View all jobs</a></li>
+                            <li><a href="{{ route('company.index') }}">View all Companies</a></li>
+                            <li><a href="{{ route('company.create') }}">Create new Company</a></li>
+                            {{--<li><a href="{{ route('createjob.index') }}">View all post jobs</a></li>--}}
 
                         </ul>
                     </li>

@@ -39,4 +39,9 @@ class Admin extends Authenticatable
     public function category(){
         return $this->hasMany('App\Category');
     }
+
+    public function company()
+    {
+        return $this->hasMany('App\Company');
+    }
 }
