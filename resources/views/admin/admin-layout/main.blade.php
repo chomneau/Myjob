@@ -33,5 +33,13 @@
 @include('admin.style.js-admin')
 <script src="{{ asset('js/toastr.min.js') }}"></script>
 
+
+<script>
+    @if(Session::has('success'))
+        toastr.success("{{Session::get('success')}}")
+    @endif
+
+    //$('#date').datepicker()
+</script>
 </body>
 </html>

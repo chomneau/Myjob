@@ -113,9 +113,11 @@
                             </ul>
                             <!-- end of skills -->
 
-                            <a href="{{ route('company.create') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus-sign"></i>
+                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#post-smallModal">
+                                <i class="glyphicon glyphicon-plus-sign"></i>
                                 Post a new job
                             </a>
+                            @include('admin.job.postjob')
 
                         </div>
 
@@ -222,51 +224,22 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>New Company Takeover Review</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">18</td>
-                                                <td class="vertical-align-mid">
-                                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                    <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit </a>
-                                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-delete"></i> Delete </a>
 
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>New Partner Contracts Consultanci</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">13</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-danger" data-transitiongoal="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Partners and Inverstors report</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">30</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>New Company Takeover Review</td>
-                                                <td>Deveint Inc</td>
-                                                <td class="hidden-phone">28</td>
-                                                <td class="vertical-align-mid">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @if(count($jobPost))
+                                                @foreach($jobPost->sortByDesc('created_at') as $job)
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>{{ $job->jobTitle }}</td>
+                                                        <td>{{ $job->created_at->format('l F j, Y') }}</td>
+                                                        <td class="hidden-phone">18</td>
+                                                        <td class="vertical-align-mid">
+                                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                            <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit </a>
+                                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-delete"></i> Delete </a>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                                         <!-- end user projects -->

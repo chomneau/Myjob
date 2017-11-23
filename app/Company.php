@@ -9,9 +9,9 @@ class Company extends Model
     public function admin(){
         return $this->belongsTo('App\Admin');
     }
-
+    //company.php
     public function job(){
-        return $this->hasMany('App\Job');
+        return $this->hasMany(Job::class);
     }
 
     public function note()

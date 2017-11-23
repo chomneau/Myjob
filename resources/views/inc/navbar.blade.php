@@ -18,7 +18,7 @@
                             </li>
 
                             <li>
-                                <a href="/findjob">Find Job</a>
+                                <a href="{{ route('findjob') }}">Find Job</a>
                             </li>
 
 

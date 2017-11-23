@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 use App\Job;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
@@ -31,7 +32,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.job.create-job');
+        $company = Company::all();
+        return view('admin.job.create-job')->with('company', $company);
     }
 
     /**
@@ -40,19 +42,10 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $this->validate($request, [
-        //validate for company table
-            'companyName' => 'required',
-            'contactPerson' => 'required',
-            'employeeSize' => 'required',
-            'type' => 'required',
-            'industryType' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            //'website' => 'required|url',
-            'address' => 'required',
+
         //validate for job table
             'jobTitle' => 'required',
             'jobDescription' => 'required',
@@ -72,24 +65,7 @@ class JobController extends Controller
         ]);
 
        // $user = Auth::user();
-
-        $company = new Company();
-        $company->companyName = $request->companyName;
-        $company->contactPerson = $request->contactPerson;
-        $company->employeeSide = $request->employeeSize;
-        $company->type = $request->type;
-        $company->industryType = $request->industryType;
-        $company->email = $request->email;
-        $company->phone = $request->phone;
-        $company->website = $request->website;
-        $company->address = $request->address;
-        $company->user_id = auth::user()->id;
-
-
-
-
-
-
+        $company = Company::find($id);
         $job = new Job();
         $job->jobTitle = $request->jobTitle;
         $job->jobDescription = $request->jobDescription;
@@ -100,24 +76,16 @@ class JobController extends Controller
         $job->jobLocation = $request->jobLocation;
         $job->hire = $request->jobHiring;
         $job->deadLine = $request->jobDeadLine;
-        $job->user_id = Auth::user()->id;
-
-//        $job->jobTitle = $request->jobTitle;
-//        $job->jobDescription = $request->jobDescription;
-//        $job->jobRequirement = $request->jobRequirement;
-//        $job->contractType = $request->jobContract;
-//        $job->jobCategory = $request->jobCategory;
-//        $job->salary = $request->jobSalary;
-//        $job->jobLocation = $request->jobLocation;
-//        $job->hire = $request->jobHiring;
-//        $job->deadLine = $request->jobDeadLine;
-//        $job->user_id = Auth::user()->id;
-
-
-
+        $job->level = $request->level;
+        $job->degree = $request->degree;
+        $job->experience = $request->experience;
+        $job->language = $request->language;
+        $job->company_id = $company->id;
         $job->save();
 
-        return redirect('admin');
+        Session::flash('success', 'You have created a new job successfully!');
+        return redirect()->route('admin.company.profile', ['id'=>$company->id]);
+       // return 123;
 
 
     }

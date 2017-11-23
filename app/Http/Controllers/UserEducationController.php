@@ -51,8 +51,6 @@ class UserEducationController extends Controller
             'start_year' => 'required',
             'end_month' => 'required',
             'end_year' => 'required',
-
-
         ]);
 
 //        $user = Auth::user();

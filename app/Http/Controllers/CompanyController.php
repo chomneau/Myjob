@@ -105,8 +105,9 @@ class CompanyController extends Controller
 
        // $user = Auth::user();
         $company = Company::find($id);
-        return view('admin.company.company-profile')->with(['company'=>$company, 'note'=>$company->note]);
-//        return view('admin.company.company-profile')->with('company', $company);
+        return view('admin.company.company-profile')
+            ->with(['company'=>$company, 'note'=>$company->note, 'jobPost'=>$company->job]);
+     //  return view('admin.company.company-profile')->with('company', $company);
     }
 
     /**

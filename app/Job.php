@@ -12,6 +12,10 @@ class Job extends Model
         'salary', 'jobLocation', 'hire', 'deadLine', 'level', 'degree', 'experience', 'language'
     ];
 
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
+
 
 
 }

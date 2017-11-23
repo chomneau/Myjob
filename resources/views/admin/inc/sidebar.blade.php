@@ -10,7 +10,7 @@
         @if(Auth::guard('admin')->check())
         <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="{{ asset('images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                <img src="{{ asset('images/chomneau.jpg') }}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
@@ -59,12 +59,12 @@
                             <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-sliders"></i> Setting <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="chartjs.html">Chart JS</a></li>
-                            <li><a href="chartjs2.html">Chart JS2</a></li>
-                            <li><a href="morisjs.html">Moris JS</a></li>
-                            <li><a href="echarts.html">ECharts</a></li>
+                            <li><a href="{{ route('category.index') }}">Job Categories</a></li>
+                            <li><a href=" {{ route('industry.index') }}">Job Industry type</a></li>
+                            <li><a href="morisjs.html">Job Location</a></li>
+                            <li><a href="echarts.html">Salary Range</a></li>
                             <li><a href="other_charts.html">Other Charts</a></li>
                         </ul>
                     </li>

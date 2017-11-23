@@ -13,8 +13,8 @@
 
             <div class="col-md-12 offset-3">
 
-                @include('category.category-table')
-                @include('category.category-form')
+                @include('admin.category.category-table')
+                @include('admin.category.category-form')
             </div>
 
             @include('inc.logoSlider')

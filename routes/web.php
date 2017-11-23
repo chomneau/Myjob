@@ -57,7 +57,8 @@ Route::post('/education/update/{id}', 'UserEducationController@update')->name('e
 Route::get('/education/delete/{id}', 'UserEducationController@destroy')->name('education.delete');
 
 
-
+//findjob
+Route::get('/findjob', 'FindJobController@index')->name('findjob');
 
 
 
@@ -74,13 +75,23 @@ Route::prefix('admin')->group(function (){
 
 
     //view category
-    Route::get('/showcategory', 'CategoryController@showCategory')->name('admin.showcategory');
-    Route::get('/category', 'CategoryController@showCategoryForm')->name('admin.category');
-    Route::post('/category', 'CategoryController@store')->name('admin.showcategory.submit');
+//    Route::get('/showcategory', 'CategoryController@showCategory')->name('admin.showcategory');
+//    Route::get('/category', 'CategoryController@showCategoryForm')->name('admin.category');
+//    Route::post('/category', 'CategoryController@store')->name('admin.showcategory.submit');
     Route::resource('/category', 'CategoryController');
+    Route::get('/category/delete/{id}', 'CategoryController@destroy')->name('category.delete');
 
-    //admin dushboard
+// industry type route controller
+    Route::resource('/industry', 'IndustryTypeController');
+    Route::get('/industry/delete/{id}', 'IndustryTypeController@destroy')->name('industry.delete');
+
+
+
+
+    //create new job
     Route::resource('/createjob', 'JobController');
+
+    Route::post('/createjob/postjob/{id}', 'JobController@store')->name('createjob.postjob');
 
     //company controller
     Route::resource('/company', 'CompanyController');
