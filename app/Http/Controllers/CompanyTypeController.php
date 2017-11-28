@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\IndustryType;
+use App\CompanyType;
 use Illuminate\Http\Request;
 use Session;
-use auth;
 
-class IndustryTypeController extends Controller
+class CompanyTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +20,8 @@ class IndustryTypeController extends Controller
 
     public function index()
     {
-        $industry = IndustryType::orderBy('created_at', 'Decs')->get();
-        return view('admin.industry.index')->with('industry', $industry);
+        $companyType = CompanyType::all();
+        return view('admin.company_type.index')->with('companyType', $companyType);
     }
 
     /**
@@ -44,14 +43,15 @@ class IndustryTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'industryType' => 'required'
+            'name'=>'required'
         ]);
-        $industry = new IndustryType();
-        $industry->name = $request->industryType;
-        $industry->admin_id = auth()->user()->id;
-        $industry->save();
 
-        Session::flash('success', 'You successfully added new industry type');
+        $companyType = new CompanyType();
+        $companyType->name = $request->name;
+        $companyType->admin_id = auth()->user()->id;
+        $companyType->save();
+
+        Session::flash('success', 'You have successfully added a new company type');
         return redirect()->back();
     }
 
@@ -74,8 +74,8 @@ class IndustryTypeController extends Controller
      */
     public function edit($id)
     {
-        $industry = IndustryType::find($id);
-        return view('admin.industry.editIndustry')->with('industry', $industry);
+        $companyType = CompanyType::find($id);
+        return view('admin.company_type.editCompanyType')->with('companyType', $companyType);
     }
 
     /**
@@ -88,15 +88,16 @@ class IndustryTypeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name'=>'required'
         ]);
 
-        $industry = IndustryType::find($id);
-        $industry->name = $request->name;
-        $industry->admin_id = auth::user()->id;
-        $industry->save();
-        Session::flash('success', 'You successfully updated a industry!');
-        return redirect('admin/industry');
+        $companyType = CompanyType::find($id);
+        $companyType->name = $request->name;
+        $companyType->admin_id = auth()->user()->id;
+        $companyType->save();
+
+        Session::flash('success', 'You have successfully updated a company type');
+        return redirect('admin/companyType');
     }
 
     /**
@@ -107,10 +108,10 @@ class IndustryTypeController extends Controller
      */
     public function destroy($id)
     {
-        $industry = IndustryType::find($id);
-        $industry->delete();
-
-        Session::flash('success', 'You successfully deleted industry type');
+        $companyType = CompanyType::find($id);
+        $companyType->delete();
+        Session::flash('success', 'You have successfully deleted a company type');
         return redirect()->back();
+
     }
 }

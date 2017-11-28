@@ -34,12 +34,31 @@ class CategoryController extends Controller
         Session::flash('success', 'You successfully added new category!');
         return redirect()->back();
     }
+    public function edit($id)
+    {
 
+        $editCategory = Category::find($id);
+        return view('admin.category.editCategory')
+            ->with('editCategory', $editCategory);
+    }
+
+    public function update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->admin_id = auth::user()->id;
+        $category->save();
+        Session::flash('success', 'You successfully updated a category!');
+        return redirect('admin/category');
+    }
 
     public function destroy($id)
     {
         $category = Category::find($id);
         $category->delete();
+        Session::flash('success', 'You successfully Deleted a category!');
         return redirect()->back();
     }
 }

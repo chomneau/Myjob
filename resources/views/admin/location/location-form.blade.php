@@ -5,17 +5,17 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="title">
-                        <i class="fa fa-tasks" aria-hidden="true"></i> Add a new category</h4>
+                        <i class="fa fa-tasks" aria-hidden="true"></i> Add a new location</h4>
                 </div>
-                <form action="{{ route('category.store') }}" method="post">
+                <form action="{{ route('location.store') }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <input type="hidden" id="id">
-                        <input type="text" name="category" class="form-control" placeholder="Add a new category here" required autofocus>
+                        <input type="text" name="name" class="form-control" placeholder="Add a new location" required autofocus>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" >Add Category</button>
+                        <button type="submit" class="btn btn-primary" >Add Location</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </form>

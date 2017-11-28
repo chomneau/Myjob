@@ -80,13 +80,31 @@ Route::prefix('admin')->group(function (){
 //    Route::post('/category', 'CategoryController@store')->name('admin.showcategory.submit');
     Route::resource('/category', 'CategoryController');
     Route::get('/category/delete/{id}', 'CategoryController@destroy')->name('category.delete');
+    Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
+    Route::post('/category/update/{id}', 'CategoryController@update')->name('category.update');
+
 
 // industry type route controller
     Route::resource('/industry', 'IndustryTypeController');
     Route::get('/industry/delete/{id}', 'IndustryTypeController@destroy')->name('industry.delete');
+    Route::get('/industry/edit/{id}', 'IndustryTypeController@edit')->name('industry.edit');
+    Route::post('/industry/update/{id}', 'IndustryTypeController@update')->name('industry.update');
 
-
-
+// job location
+    Route::resource('/location', 'LocationController');
+    Route::get('/location/edit/{id}', 'LocationController@edit')->name('location.edit');
+    Route::post('/location/update/{id}', 'LocationController@update')->name('location.update');
+    Route::get('/location/delete/{id}', 'LocationController@destroy')->name('location.delete');
+// job employee Size
+    Route::resource('/employeeSize', 'EmployeeSizeController');
+    Route::get('/employeeSize/edit/{id}', 'EmployeeSizeController@edit')->name('employeeSize.edit');
+    Route::post('/employeeSize/update/{id}', 'EmployeeSizeController@update')->name('employeeSize.update');
+    Route::get('/employeeSize/delete/{id}', 'EmployeeSizeController@destroy')->name('employeeSize.delete');
+// job company type
+    Route::resource('/companyType', 'CompanyTypeController');
+    Route::get('/companyType/edit/{id}', 'CompanyTypeController@edit')->name('companyType.edit');
+    Route::post('/companyType/update/{id}', 'CompanyTypeController@update')->name('companyType.update');
+    Route::get('/companyType/delete/{id}', 'CompanyTypeController@destroy')->name('companyType.delete');
 
     //create new job
     Route::resource('/createjob', 'JobController');

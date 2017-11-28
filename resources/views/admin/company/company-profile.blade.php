@@ -113,7 +113,7 @@
                             </ul>
                             <!-- end of skills -->
 
-                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#post-smallModal">
+                            <a href="{{ route('createjob.create') }}" class="btn btn-success" data-toggle="modal" data-target="#post-smallModal">
                                 <i class="glyphicon glyphicon-plus-sign"></i>
                                 Post a new job
                             </a>
@@ -152,65 +152,18 @@
                             <div class="" role="tabpanel" data-example-id="togglable-tabs">
                                 <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                                     <li role="presentation" class="active">
-                                        <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity Note</a>
+                                        <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Posted Jobs</a>
                                     </li>
-                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Posted Jobs</a>
+                                    <li role="presentation" class="">
+                                        <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity Note</a>
                                     </li>
                                     <li role="presentation" class="">
                                         <a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">About Company</a>
                                     </li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
-                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                                        <!-- start recent activity -->
-
-                                        <ul class="messages">
-                                            @if(count($note))
-                                                @foreach( $note as $noted)
-                                                    <li class="ourItem">
-                                                        <img src="{{ asset($company->logo) }}" class="avatar" alt="Avatar">
-                                                        <div class="message_date">
-                                                            <h3 class="date text-info">{{ $noted->created_at->format(' j ') }}</h3>
-                                                            <p class="month">{{ substr($noted->created_at->format(' F Y '), 0, 4) }}, {{ substr($noted->created_at->format(' Y '), 3, 3) }}</p>
-                                                        </div>
-                                                        <div class="message_wrapper">
-                                                            <h4 class="heading" id="title">
-                                                                {{ $noted->title }}
-
-                                                            </h4>
-                                                            <blockquote class="message" id="body" style="margin-right: 2em">
-                                                                {{ $noted->body }}
-                                                            </blockquote>
-                                                            {{--<div class="edit" style="font-size: 14px; margin-top: 15px; margin-bottom: -10px">--}}
-                                                                {{--<a href="" data-toggle="modal" data-target="#edit-smallModal">--}}
-                                                                    {{--<small><i class="fa fa-pencil" aria-hidden="true"></i> edit</small>--}}
-                                                                {{--</a>--}}
-                                                                {{--@include('admin.company.form.form-edit-note')--}}
-                                                                {{--<a href="">--}}
-                                                                    {{--<small><i class="fa fa-trash-o" aria-hidden="true"></i> delete</small>--}}
-                                                                {{--</a>--}}
-                                                            {{--</div>--}}
-
-                                                            <br />
-
-                                                        </div>
-                                                    </li>
-                                                @endforeach
-                                            @endif
-                                                <p class="url" style="margin-top: 15px">
-                                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#smallModal">
-                                                        <i class="fa fa-flag-o" aria-hidden="true"></i> add note</a>
-                                                    @include('admin.company.form.form-add-note')
-                                                </p>
-
-                                        </ul>
-
-                                        <!-- end recent activity -->
-
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab">
 
                                         <!-- start user projects -->
                                         <table class="data table table-striped no-margin">
@@ -243,6 +196,46 @@
                                             </tbody>
                                         </table>
                                         <!-- end user projects -->
+
+                                    </div>
+
+                                    <div role="tabpanel" class="tab-pane fade" id="tab_content1" aria-labelledby="profile-tab">
+
+                                        <!-- start recent activity -->
+
+                                        <ul class="messages">
+                                            @if(count($note))
+                                                @foreach( $note as $noted)
+                                                    <li class="ourItem">
+                                                        <img src="{{ asset($company->logo) }}" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h3 class="date text-info">{{ $noted->created_at->format(' j ') }}</h3>
+                                                            <p class="month">{{ substr($noted->created_at->format(' F Y '), 0, 4) }}, {{ substr($noted->created_at->format(' Y '), 3, 3) }}</p>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading" id="title">
+                                                                {{ $noted->title }}
+
+                                                            </h4>
+                                                            <blockquote class="message" id="body" style="margin-right: 2em">
+                                                                {{ $noted->body }}
+                                                            </blockquote>
+                                                            <br />
+
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+                                            <p class="url" style="margin-top: 15px">
+                                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#smallModal">
+                                                    <i class="fa fa-flag-o" aria-hidden="true"></i> add note</a>
+                                                @include('admin.company.form.form-add-note')
+                                            </p>
+
+                                        </ul>
+
+                                        <!-- end recent activity -->
 
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">

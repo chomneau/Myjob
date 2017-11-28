@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\IndustryType;
+use App\EmployeeNumber;
 use Illuminate\Http\Request;
 use Session;
-use auth;
 
-class IndustryTypeController extends Controller
+class EmployeeSizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +20,9 @@ class IndustryTypeController extends Controller
 
     public function index()
     {
-        $industry = IndustryType::orderBy('created_at', 'Decs')->get();
-        return view('admin.industry.index')->with('industry', $industry);
+        $employeeSize = EmployeeNumber::all();
+       //return $employeeSize;
+         return view('admin.employee_number.index')->with('employeeSize', $employeeSize);
     }
 
     /**
@@ -44,14 +44,15 @@ class IndustryTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'industryType' => 'required'
+            'name'=>'required'
         ]);
-        $industry = new IndustryType();
-        $industry->name = $request->industryType;
-        $industry->admin_id = auth()->user()->id;
-        $industry->save();
 
-        Session::flash('success', 'You successfully added new industry type');
+        $employeeSize = new EmployeeNumber();
+        $employeeSize->name = $request->name;
+        $employeeSize->admin_id = auth()->user()->id;
+        $employeeSize->save();
+
+        Session::flash('success', 'You successfully added a new employee size');
         return redirect()->back();
     }
 
@@ -74,8 +75,8 @@ class IndustryTypeController extends Controller
      */
     public function edit($id)
     {
-        $industry = IndustryType::find($id);
-        return view('admin.industry.editIndustry')->with('industry', $industry);
+        $employeeSize = EmployeeNumber::find($id);
+        return view('admin.employee_number.editEmployeeSize')->with('employeeSize', $employeeSize);
     }
 
     /**
@@ -88,15 +89,16 @@ class IndustryTypeController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name'=>'required'
         ]);
 
-        $industry = IndustryType::find($id);
-        $industry->name = $request->name;
-        $industry->admin_id = auth::user()->id;
-        $industry->save();
-        Session::flash('success', 'You successfully updated a industry!');
-        return redirect('admin/industry');
+        $employeeSize = EmployeeNumber::find($id);
+        $employeeSize->name = $request->name;
+        $employeeSize->admin_id = auth()->user()->id;
+        $employeeSize->save();
+
+        Session::flash('success', 'You successfully added a new employee size');
+        return redirect('admin/employeeSize');
     }
 
     /**
@@ -107,9 +109,8 @@ class IndustryTypeController extends Controller
      */
     public function destroy($id)
     {
-        $industry = IndustryType::find($id);
-        $industry->delete();
-
+        $employeeSize = EmployeeNumber::find($id);
+        $employeeSize->delete();
         Session::flash('success', 'You successfully deleted industry type');
         return redirect()->back();
     }

@@ -10,9 +10,13 @@
         <label for="exampleInputEmail1">Job Category</label>
         <select name="jobCategory" id="" class="form-control" required>
             <option value="">--select job Category--</option>
-            <option value="Full time">IT/Software</option>
-            <option value="Part time">Accounting</option>
-            <option value="Volunteer">Telecommunication</option>
+            @if(count($category))
+                @foreach($category as $categories)
+                    <option value="{{ $categories->name }}">{{ $categories->name }}</option>
+                @endforeach
+            @endif
+            {{--<option value="Part time">Accounting</option>--}}
+            {{--<option value="Volunteer">Telecommunication</option>--}}
         </select>
     </div>
 
@@ -44,31 +48,12 @@
         <label for="jobLocation">Job Location</label>
         <select name="jobLocation" id="heard" class="form-control" required>
             <option value="">--select job location--</option>
-            <option value="Banteay Meanchey">Banteay Meanchey</option>
-            <option value="Battambang">Battambang</option>
-            <option value="Kampong Cham">Kampong Cham</option>
-            <option value="Kampong Chhnang">Kampong Chhnang</option>
-            <option value="Kampong Speu">Kampong Speu</option>
-            <option value="Kampong Thom">Kampong Thom</option>
-            <option value="Kampot">Kampot</option>
-            <option value="Kandal">Kandal</option>
-            <option value="Kep">Kep</option>
-            <option value="Koh Kong">Koh Kong</option>
-            <option value="Kratié">Kratié</option>
-            <option value="Mondulkiri">Mondulkiri</option>
-            <option value="Oddar Meanchey">Oddar Meanchey</option>
-            <option value="Pailin">Pailin</option>
-            <option value="Phnom Penh">Phnom Penh</option>
-            <option value="Preah Sihanouk">Preah Sihanouk</option>
-            <option value="Preah Vihear">Preah Vihear</option>
-            <option value="Pursat">Pursat</option>
-            <option value="Prey Veng">Prey Veng</option>
-            <option value="Ratanakiri">Ratanakiri</option>
-            <option value="Siem Reap">Siem Reap</option>
-            <option value="Stung Treng">Stung Treng</option>
-            <option value="Svay Rieng">Svay Rieng</option>
-            <option value="Takéo">Takéo</option>
-            <option value="Tboung Khmum">Tboung Khmum</option>
+            @if(count($location))
+                @foreach($location as $locations)
+                    <option value="{{ $locations->name }}">{{ $locations->name }}</option>
+                @endforeach
+            @endif
+
 
         </select>
     </div>

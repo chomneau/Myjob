@@ -18,7 +18,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>JOB CATEGORY <small>setting</small></h3>
+                    <h3>JOB EMPLOYEE SIZE <small>setting</small></h3>
                 </div>
 
                 <div class="title_right">
@@ -40,7 +40,7 @@
                     <div class="x_panel">
                         <div class="x_title">
 
-                            <h2> <i class="fa fa-sliders" aria-hidden="true"></i>  Edit Category</h2>
+                            <h2> <i class="fa fa-sliders" aria-hidden="true"></i>  Edit Company Type</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -61,24 +61,24 @@
                         </div>
                         <div class="x_content">
 
-                        {{--for edit form--}}
-                        <div class="row">
-                            <form action="{{ route('category.update', ['id'=>$editCategory->id]) }}" method="post">
-                                {{ csrf_field() }}
-                                <div class="col-md-8 col-md-offset-1">
-                                    <input type="text" name="name" value="{{ $editCategory->name }}" class="form-control" autofocus required>
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="submit"  class="btn btn-success" value="update now">
-                                </div>
-                            </form>
-                        </div>
-                            {{--end edit form--}}
+                            {{--for edit form--}}
+                            <div class="row">
+                                <form action="{{ route('companyType.update', ['id'=>$companyType->id]) }}" method="post">
+                                    {{ csrf_field() }}
+                                    <div class="col-md-8 col-md-offset-1">
+                                        <input type="text" name="name" value="{{ $companyType->name }}" class="form-control" autofocus required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="submit"  class="btn btn-success" value="update now">
+                                    </div>
+                                </form>
+                            </div>
+                        {{--end edit form--}}
 
 
 
 
-                            <!-- start project list -->
+                        <!-- start project list -->
 
                             <!-- end project list -->
 

@@ -20,11 +20,7 @@ class FindJobController extends Controller
 //        $job = Job::orderBy('created_at', 'desc')
 //            ->take(20)
 //            ->get();
-//
-//
 
-//
-//
 //        return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
 //
 

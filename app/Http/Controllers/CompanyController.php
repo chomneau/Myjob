@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Company;
+use App\IndustryType;
+use App\Location;
 use App\Note;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
-
+use View;
 class CompanyController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->category = Category::all();
+        $this->industry = IndustryType::all();
+        $this->location = Location::all();
+
+        View::share('location', $this->location);
+        View::share('industryType', $this->industry);
+        View::share('category', $this->category);
     }
     /**
      * Display a listing of the resource.
@@ -106,7 +116,11 @@ class CompanyController extends Controller
        // $user = Auth::user();
         $company = Company::find($id);
         return view('admin.company.company-profile')
-            ->with(['company'=>$company, 'note'=>$company->note, 'jobPost'=>$company->job]);
+            ->with([
+                'company'=>$company,
+                'note'=>$company->note,
+                'jobPost'=>$company->job,
+            ]);
      //  return view('admin.company.company-profile')->with('company', $company);
     }
 

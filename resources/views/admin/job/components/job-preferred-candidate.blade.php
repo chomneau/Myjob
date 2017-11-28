@@ -20,8 +20,8 @@
                     <option value="">--select degree--</option>
                     <option value="High School or equivalent">High School or equivalent</option>
                     <option value="Certification(Diploma)">Certification(Diploma)</option>
-                    <option value="Bachelor' degree">Bachelor' degree</option>
-                    <option value="Master's degree">Master' degree</option>
+                    <option value="Bachelor's degree">Bachelor's degree</option>
+                    <option value="Master's degree">Master's degree</option>
                 </select>
             </div>
         </div>

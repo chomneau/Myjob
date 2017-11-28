@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\IndustryType;
+use App\Location;
 use Illuminate\Http\Request;
 use Session;
-use auth;
 
-class IndustryTypeController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +16,13 @@ class IndustryTypeController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+
     }
 
     public function index()
     {
-        $industry = IndustryType::orderBy('created_at', 'Decs')->get();
-        return view('admin.industry.index')->with('industry', $industry);
+        $location = Location::all();
+        return view('admin.location.index')->with('location', $location);
     }
 
     /**
@@ -44,15 +44,16 @@ class IndustryTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'industryType' => 'required'
+            'name' => 'required'
         ]);
-        $industry = new IndustryType();
-        $industry->name = $request->industryType;
-        $industry->admin_id = auth()->user()->id;
-        $industry->save();
 
-        Session::flash('success', 'You successfully added new industry type');
-        return redirect()->back();
+        $location = new Location();
+        $location->name = $request->name;
+        $location->admin_id = auth()->user()->id;
+        $location->save();
+
+        Session::flash('success', 'You successfully added a new location!');
+        return redirect('admin/location');
     }
 
     /**
@@ -74,8 +75,8 @@ class IndustryTypeController extends Controller
      */
     public function edit($id)
     {
-        $industry = IndustryType::find($id);
-        return view('admin.industry.editIndustry')->with('industry', $industry);
+        $location = Location::find($id);
+        return view('admin.location.editLocation')->with('location', $location);
     }
 
     /**
@@ -87,16 +88,12 @@ class IndustryTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required'
-        ]);
-
-        $industry = IndustryType::find($id);
-        $industry->name = $request->name;
-        $industry->admin_id = auth::user()->id;
-        $industry->save();
-        Session::flash('success', 'You successfully updated a industry!');
-        return redirect('admin/industry');
+        $location = Location::find($id);
+        $location->name = $request->name;
+        $location->admin_id = auth()->user()->id;
+        $location->save();
+        Session::flash('success', 'You successfully updated a location!');
+        return redirect('admin/location');
     }
 
     /**
@@ -107,10 +104,9 @@ class IndustryTypeController extends Controller
      */
     public function destroy($id)
     {
-        $industry = IndustryType::find($id);
-        $industry->delete();
-
-        Session::flash('success', 'You successfully deleted industry type');
-        return redirect()->back();
+        $location = Location::find($id);
+        $location->delete();
+        Session::flash('success', 'You successfully deleted a location!');
+        return redirect('admin/location');
     }
 }

@@ -63,9 +63,11 @@
                         <ul class="nav child_menu">
                             <li><a href="{{ route('category.index') }}">Job Categories</a></li>
                             <li><a href=" {{ route('industry.index') }}">Job Industry type</a></li>
-                            <li><a href="morisjs.html">Job Location</a></li>
-                            <li><a href="echarts.html">Salary Range</a></li>
-                            <li><a href="other_charts.html">Other Charts</a></li>
+                            <li><a href="{{ route('location.index') }}">Job Location</a></li>
+                            <li><a href="{{ route('employeeSize.index') }}">Job employee Size</a></li>
+                            <li><a href="{{ route('companyType.index') }}">Job company type</a></li>
+
+
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
