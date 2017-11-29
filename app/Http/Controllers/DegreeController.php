@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
-use App\Job;
-use App\Location;
-use View;
+use App\Degree;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use Session;
 
-class FindJobController extends Controller
+class DegreeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,44 +15,13 @@ class FindJobController extends Controller
      */
     public function __construct()
     {
-        $this->location = Location::orderBy('name', 'Asc')->take(4)->get();
-        View::share('location', $this->location);
+        $this->middleware('auth:admin');
     }
 
     public function index()
     {
-//        $job = Job::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-
-//        return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
-//
-
-       // $jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-
-        $job = Job::with('company')->take(20)->get();
-        return view('pages.findjob')->with('job',$job);
-       // return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
-
-}
-
-
-//        foreach ($job->company as $com){
-//            echo $com->companyName;
-//        }
-
-//        $company = Company::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-//        return view('pages.findjob')->with('company', $company);
-
-
-
-    public function countLocation()
-    {
-        $jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-        return $jobLocation;
-        //return view('pages.findjob')->with('location', $jobLocation);
+        $degree = Degree::all();
+        return view('admin.preferred_degree.index')->with('degree', $degree);
     }
 
     /**
@@ -77,7 +42,15 @@ class FindJobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $degree = new Degree();
+        $degree->name = $request->name;
+        $degree->admin_id = auth()->user()->id;
+        $degree->save();
+        Session::flash('success', 'You have added a new preferred degree successfully!');
+        return redirect()->back();
     }
 
     /**
@@ -99,7 +72,8 @@ class FindJobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $degree = Degree::find($id);
+        return view('admin.preferred_degree.editDegree')->with('degree', $degree);
     }
 
     /**
@@ -111,7 +85,15 @@ class FindJobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $degree = Degree::find($id);
+        $degree->name = $request->name;
+        $degree->admin_id = auth()->user()->id;
+        $degree->save();
+        Session::flash('success', 'You have updated a preferred degree successfully!');
+        return redirect('admin/degree');
     }
 
     /**
@@ -122,6 +104,10 @@ class FindJobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $degree = Degree::find($id);
+        $degree->delete();
+        Session::flash('success', 'You have deleted a preferred degree successfully!');
+        return redirect('admin/degree');
+
     }
 }

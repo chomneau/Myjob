@@ -13,21 +13,13 @@
                         <div class="panel-body">
 
                                 <ul class="list-group">
-                                    <li class="list-group-item">
-                                    {{--@if(count($location))--}}
-                                        {{--@foreach($location as $locations)--}}
-                                            Phnom Penh <span class="badge">{{ $location}}</span>
-                                        {{--@endforeach--}}
-                                    {{--@endif--}}
-                                    </li>
-                                    <li class="list-group-item">
-
-                                        IT/Computer
-                                    </li>
-                                    <li class="list-group-item">
-
-                                        Banking
-                                    </li>
+                                    @if(count($location))
+                                        @foreach($location as $locations)
+                                            <li class="list-group-item">
+                                                    {{ $locations->name }} <span class="badge">12</span>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
 
                         </div>

@@ -105,8 +105,37 @@ Route::prefix('admin')->group(function (){
     Route::get('/companyType/edit/{id}', 'CompanyTypeController@edit')->name('companyType.edit');
     Route::post('/companyType/update/{id}', 'CompanyTypeController@update')->name('companyType.update');
     Route::get('/companyType/delete/{id}', 'CompanyTypeController@destroy')->name('companyType.delete');
+// job Salary Range
+    Route::resource('/salaryRange', 'SalaryRangeController');
+    Route::get('/salaryRange/edit/{id}', 'SalaryRangeController@edit')->name('salaryRange.edit');
+    Route::post('/salaryRange/update/{id}', 'SalaryRangeController@update')->name('salaryRange.update');
+    Route::get('/salaryRange/delete/{id}', 'SalaryRangeController@destroy')->name('salaryRange.delete');
 
-    //create new job
+// job Contract type
+    Route::resource('/contractType', 'ContractTypeController');
+    Route::get('/contractType/edit/{id}', 'ContractTypeController@edit')->name('contractType.edit');
+    Route::post('/contractType/update/{id}', 'ContractTypeController@update')->name('contractType.update');
+    Route::get('/contractType/delete/{id}', 'ContractTypeController@destroy')->name('contractType.delete');
+// job degree
+    Route::resource('/degree', 'DegreeController');
+    Route::get('/degree/edit/{id}', 'DegreeController@edit')->name('degree.edit');
+    Route::post('/degree/update/{id}', 'DegreeController@update')->name('degree.update');
+    Route::get('/degree/delete/{id}', 'DegreeController@destroy')->name('degree.delete');
+
+    // job preferred level
+    Route::resource('/preferredLevel', 'PreferredLevelController');
+    Route::get('/preferredLevel/edit/{id}', 'PreferredLevelController@edit')->name('preferredLevel.edit');
+    Route::post('/preferredLevel/update/{id}', 'PreferredLevelController@update')->name('preferredLevel.update');
+    Route::get('/preferredLevel/delete/{id}', 'PreferredLevelController@destroy')->name('preferredLevel.delete');
+// job preferred Experience
+    Route::resource('/preExperience', 'PreferredExperController');
+    Route::get('/preExperience/edit/{id}', 'PreferredExperController@edit')->name('preExperience.edit');
+    Route::post('/preExperience/update/{id}', 'PreferredExperController@update')->name('preExperience.update');
+    Route::get('/preExperience/delete/{id}', 'PreferredExperController@destroy')->name('preExperience.delete');
+
+
+
+//create new job
     Route::resource('/createjob', 'JobController');
 
     Route::post('/createjob/postjob/{id}', 'JobController@store')->name('createjob.postjob');

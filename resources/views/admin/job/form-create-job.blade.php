@@ -11,7 +11,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form role="form" class="form-group" action="{{ route('createjob.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('createjob.postjob', ['id'=>$company->id]) }}" method="post">
                             {{csrf_field()}}
 
                             <div class="col-md-1"></div>
@@ -23,7 +23,6 @@
                                                @include('admin.job.components.job-detail')
                                                @include('admin.job.components.job-preferred-candidate')
                                                <ul class="list-inline pull-right">
-                                                   <li><button type="button" class="btn btn-default next-step">Save to draft</button></li>
                                                    <li><button type="submit" class="btn btn-primary next-step">Post now</button></li>
                                                </ul>
                                            </div>

@@ -6,7 +6,23 @@ use App\Company;
 use Illuminate\Http\Request;
 use App\Job;
 use Session;
+use View;
 use Illuminate\Support\Facades\Auth;
+
+use App\Category;
+
+use App\CompanyType;
+
+use App\ContractType;
+use App\Degree;
+use App\EmployeeNumber;
+use App\IndustryType;
+use App\Level;
+use App\Location;
+use App\Note;
+use App\PreferredExperience;
+use App\SalaryRange;
+
 
 class JobController extends Controller
 {
@@ -19,6 +35,36 @@ class JobController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->category = Category::all();
+        View::share('category', $this->category);
+
+        $this->industryType = IndustryType::all();
+        View::share('industryType', $this->industryType);
+
+        $this->location = Location::all();
+        View::share('location', $this->location);
+
+        $this->companyType = companyType::all();
+        View::share('companyType', $this->companyType);
+
+        $this->employeeSize = EmployeeNumber::all();
+        View::share('employeeSize', $this->employeeSize);
+
+        $this->contractType = ContractType::all();
+        View::share('contractType', $this->contractType);
+
+        $this->salaryRange = SalaryRange::orderBy('name', 'Asc')->get();
+        View::share('salaryRange', $this->salaryRange);
+
+        $this->level = Level::all();
+        View::share('level', $this->level);
+
+        $this->degree = Degree::all();
+        View::share('degree', $this->degree);
+
+        $this->preExperience = PreferredExperience::all();
+        View::share('preExperience', $this->preExperience);
+
     }
     public function index()
     {
@@ -30,10 +76,11 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $company = Company::all();
-        return view('admin.job.create-job')->with('company', $company);
+        $company = Company::find($request->id);
+        $job = Job::all();
+        return view('admin.job.create-job')->with(['job' => $job, 'company'=>$company]);
     }
 
     /**
@@ -70,15 +117,15 @@ class JobController extends Controller
         $job->jobTitle = $request->jobTitle;
         $job->jobDescription = $request->jobDescription;
         $job->jobRequirement = $request->jobRequirement;
-        $job->contractType = $request->jobContract;
-        $job->jobCategory = $request->jobCategory;
-        $job->salary = $request->jobSalary;
-        $job->jobLocation = $request->jobLocation;
+        $job->contractType_id = $request->jobContract;
+        $job->category_id = $request->jobCategory;
+        $job->salaryRange_id = $request->jobSalary;
+        $job->location_id = $request->jobLocation;
         $job->hire = $request->jobHiring;
         $job->deadLine = $request->jobDeadLine;
-        $job->level = $request->level;
-        $job->degree = $request->degree;
-        $job->experience = $request->experience;
+        $job->level_id = $request->level;
+        $job->degree_id = $request->degree;
+        $job->job_experience_id = $request->experience;
         $job->language = $request->language;
         $job->company_id = $company->id;
         $job->save();
@@ -109,7 +156,8 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $job = Job::find($id);
+        return view('admin.job.edit-job')->with('job', $job);
     }
 
     /**
@@ -121,7 +169,47 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+
+            //validate for job table
+            'jobTitle' => 'required',
+            'jobDescription' => 'required',
+            'jobRequirement' => 'required',
+            'jobContract' => 'required',
+            'jobCategory' => 'required',
+            'jobSalary' => 'required',
+            'jobLocation' => 'required',
+            'jobHiring' => 'required',
+            'jobDeadLine' => 'required',
+            //validate for preferred candidate
+            'level' => 'required',
+            'degree' => 'required',
+            'experience' => 'required',
+            'language' => 'required',
+
+        ]);
+
+        // $user = Auth::user();
+        $company = Company::find($id);
+        $job = Job::find($id);
+        $job->jobTitle = $request->jobTitle;
+        $job->jobDescription = $request->jobDescription;
+        $job->jobRequirement = $request->jobRequirement;
+        $job->contractType_id = $request->jobContract;
+        $job->category_id = $request->jobCategory;
+        $job->salaryRange_id = $request->jobSalary;
+        $job->location_id = $request->jobLocation;
+        $job->hire = $request->jobHiring;
+        $job->deadLine = $request->jobDeadLine;
+        $job->level_id = $request->level;
+        $job->degree_id = $request->degree;
+        $job->job_experience_id = $request->experience;
+        $job->language = $request->language;
+        $job->company_id = $company->id;
+        $job->save();
+
+        Session::flash('success', 'You have updated a job successfully!');
+        return redirect()->route('admin.company.profile', ['id'=>$company->id]);
     }
 
     /**
@@ -132,6 +220,9 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Job::find($id);
+        $job->delete();
+        Session::flash('success', 'You have deleted a job successfully!');
+        return redirect()->back();
     }
 }

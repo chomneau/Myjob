@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
-use App\Job;
-use App\Location;
-use View;
+use App\Level;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use Session;
+use auth;
 
-class FindJobController extends Controller
+class PreferredLevelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,44 +16,14 @@ class FindJobController extends Controller
      */
     public function __construct()
     {
-        $this->location = Location::orderBy('name', 'Asc')->take(4)->get();
-        View::share('location', $this->location);
+        $this->middleware('auth:admin');
     }
 
     public function index()
     {
-//        $job = Job::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-
-//        return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
-//
-
-       // $jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-
-        $job = Job::with('company')->take(20)->get();
-        return view('pages.findjob')->with('job',$job);
-       // return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
-
-}
-
-
-//        foreach ($job->company as $com){
-//            echo $com->companyName;
-//        }
-
-//        $company = Company::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-//        return view('pages.findjob')->with('company', $company);
-
-
-
-    public function countLocation()
-    {
-        $jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-        return $jobLocation;
-        //return view('pages.findjob')->with('location', $jobLocation);
+        $preferredLevel = Level::all();
+        //return $preferredLevel;
+        return view('admin.preferred_level.index')->with('preferredLevel', $preferredLevel);
     }
 
     /**
@@ -77,7 +44,17 @@ class FindJobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required'
+        ]);
+
+        $preferredLevel= new Level();
+        $preferredLevel->name = $request->name;
+        $preferredLevel->admin_id = auth()->user()->id;
+        $preferredLevel->save();
+
+        Session::flash('success', 'You have successfully added new preferred level!');
+        return redirect()->back();
     }
 
     /**
@@ -99,7 +76,9 @@ class FindJobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $preferredLevel = Level::find($id);
+        return view('admin.preferred_level.editLevel')
+            ->with('preferredLevel', $preferredLevel);
     }
 
     /**
@@ -111,7 +90,17 @@ class FindJobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'=>'required'
+        ]);
+
+        $preferredLevel= Level::find($id);
+        $preferredLevel->name = $request->name;
+        $preferredLevel->admin_id = auth::user()->id;
+        $preferredLevel->save();
+
+        Session::flash('success', 'You have successfully update a preferred level!');
+        return redirect('admin/preferredLevel');
     }
 
     /**
@@ -122,6 +111,8 @@ class FindJobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Level::find($id)->delete();
+        Session::flash('success', 'You have deleted a preferred level successfully!');
+        return redirect('admin/preferredLevel');
     }
 }

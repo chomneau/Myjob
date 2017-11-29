@@ -65,7 +65,7 @@
 
                                         <div class="tab-content">
                                             <div class="tab-pane active" role="tabpanel" id="step1">
-                                                @include('admin.job.components.job-description')
+                                                @include('admin.job.components.edit-job-description')
                                                 <ul class="list-inline pull-right">
                                                     <li><button type="button" class="btn btn-primary next-step">Next</button></li>
                                                 </ul>
@@ -73,7 +73,7 @@
 
                                             {{--start step 2--}}
                                             <div class="tab-pane" role="tabpanel" id="step2">
-                                                @include('admin.job.components.job-detail')
+                                                @include('admin.job.components.edit-job-detail')
                                                 <ul class="list-inline pull-right">
                                                     <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
                                                     <li><button type="button" class="btn btn-primary next-step">Next</button></li>

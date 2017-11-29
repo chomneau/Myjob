@@ -19,14 +19,14 @@ class CreateCompaniesTable extends Migration
             $table->string('companyName');
             $table->string('logo')->nullable();
             $table->string('contactPerson');
-            $table->string('employeeSize');
-            $table->string('type');
-            $table->string('industryType');
+            $table->integer('employeeSize_id');
+            $table->integer('companyType_id');
+            $table->integer('industryType_id');
             $table->string('email');
             $table->bigInteger('phone');
             $table->string('website')->nullable();
             $table->string('address');
-            $table->string('location');
+            $table->integer('location_id');
             $table->longText('about')->nullable();;
 
             $table->timestamps();

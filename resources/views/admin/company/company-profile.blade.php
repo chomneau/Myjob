@@ -113,11 +113,13 @@
                             </ul>
                             <!-- end of skills -->
 
-                            <a href="{{ route('createjob.create') }}" class="btn btn-success" data-toggle="modal" data-target="#post-smallModal">
+                            <a href="{{ route('createjob.create', ['id'=>$company->id]) }}" class="btn btn-success" >
+                                {{--data-toggle="modal" data-target="#post-smallModal"--}}
                                 <i class="glyphicon glyphicon-plus-sign"></i>
                                 Post a new job
                             </a>
-                            @include('admin.job.postjob')
+
+                            {{--@include('admin.job.topup-form-create')--}}
 
                         </div>
 

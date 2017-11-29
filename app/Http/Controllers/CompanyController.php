@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Category;
+
+use App\CompanyType;
 use App\Company;
+use App\ContractType;
+use App\Degree;
+use App\EmployeeNumber;
 use App\IndustryType;
+use App\Level;
 use App\Location;
 use App\Note;
+use App\PreferredExperience;
+use App\SalaryRange;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -17,13 +26,37 @@ class CompanyController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->category = Category::all();
-        $this->industry = IndustryType::all();
-        $this->location = Location::all();
 
-        View::share('location', $this->location);
-        View::share('industryType', $this->industry);
+        $this->category = Category::all();
         View::share('category', $this->category);
+
+        $this->industryType = IndustryType::all();
+        View::share('industryType', $this->industryType);
+
+        $this->location = Location::all();
+        View::share('location', $this->location);
+
+        $this->companyType = companyType::all();
+        View::share('companyType', $this->companyType);
+
+        $this->employeeSize = EmployeeNumber::all();
+        View::share('employeeSize', $this->employeeSize);
+
+        $this->contractType = ContractType::all();
+        View::share('contractType', $this->contractType);
+
+        $this->salaryRange = SalaryRange::orderBy('name', 'Asc')->get();
+        View::share('salaryRange', $this->salaryRange);
+
+        $this->level = Level::all();
+        View::share('level', $this->level);
+
+        $this->degree = Degree::all();
+        View::share('degree', $this->degree);
+
+        $this->preExperience = PreferredExperience::all();
+        View::share('preExperience', $this->preExperience);
+
     }
     /**
      * Display a listing of the resource.
@@ -61,7 +94,7 @@ class CompanyController extends Controller
             'companyName' => 'required',
             'contactPerson' => 'required',
             'employeeSize' => 'required',
-            'type' => 'required',
+            'companyType' => 'required',
             'industryType' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
@@ -76,12 +109,12 @@ class CompanyController extends Controller
 
         $company->companyName = $request->companyName;
         $company->contactPerson = $request->contactPerson;
-        $company->employeeSize = $request->employeeSize;
-        $company->type = $request->type;
-        $company->industryType = $request->industryType;
+        $company->employeeSize_id = $request->employeeSize;
+        $company->companyType_id = $request->companyType;
+        $company->industryType_id = $request->industryType;
         $company->email = $request->email;
         $company->phone = $request->phone;
-        $company->location = $request->location;
+        $company->location_id = $request->location;
         $company->website = $request->website;
         $company->address = $request->address;
         $company->about = $request->about;
@@ -150,7 +183,7 @@ class CompanyController extends Controller
             'companyName' => 'required',
             'contactPerson' => 'required',
             'employeeSize' => 'required',
-            'type' => 'required',
+            'companyType' => 'required',
             'industryType' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
@@ -165,12 +198,12 @@ class CompanyController extends Controller
 
         $company->companyName = $request->companyName;
         $company->contactPerson = $request->contactPerson;
-        $company->employeeSize = $request->employeeSize;
-        $company->type = $request->type;
-        $company->industryType = $request->industryType;
+        $company->employeeSize_id = $request->employeeSize;
+        $company->companyType_id = $request->companyType;
+        $company->industryType_id = $request->industryType;
         $company->email = $request->email;
         $company->phone = $request->phone;
-        $company->location = $request->location;
+        $company->location_id = $request->location;
         $company->website = $request->website;
         $company->address = $request->address;
         $company->about = $request->about;

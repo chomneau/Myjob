@@ -40,34 +40,19 @@
 
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="general_elements.html">General Elements</a></li>
-                            <li><a href="media_gallery.html">Media Gallery</a></li>
-                            <li><a href="typography.html">Typography</a></li>
-                            <li><a href="icons.html">Icons</a></li>
-                            <li><a href="glyphicons.html">Glyphicons</a></li>
-                            <li><a href="widgets.html">Widgets</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="inbox.html">Inbox</a></li>
-                            <li><a href="calendar.html">Calendar</a></li>
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="tables.html">Tables</a></li>
-                            <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                        </ul>
-                    </li>
+
                     <li><a><i class="fa fa-sliders"></i> Setting <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('category.index') }}">Job Categories</a></li>
                             <li><a href=" {{ route('industry.index') }}">Job Industry type</a></li>
                             <li><a href="{{ route('location.index') }}">Job Location</a></li>
-                            <li><a href="{{ route('employeeSize.index') }}">Job employee Size</a></li>
-                            <li><a href="{{ route('companyType.index') }}">Job company type</a></li>
-
-
+                            <li><a href="{{ route('employeeSize.index') }}">Employee Size</a></li>
+                            <li><a href="{{ route('companyType.index') }}">Company type</a></li>
+                            <li><a href="{{ route('salaryRange.index') }}">Salary Range</a></li>
+                            <li><a href="{{ route('contractType.index') }}">Job Contract type</a></li>
+                            <li><a href="{{ route('degree.index') }}">Preferred degree</a></li>
+                            <li><a href="{{ route('preferredLevel.index') }}">Preferred level</a></li>
+                            <li><a href="{{ route('preExperience.index') }}">Preferred Experience</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>

@@ -19,23 +19,32 @@
 
                 <div class="col-md-6 {{ $errors->has('type') ? ' has-error' : '' }}">
                     <label for="exampleInputEmail1">Type</label>
-                    <select name="type" id="" class="form-control" required>
-                        <option value="">--select company type--</option>
-                        <option value="Private">Private limited</option>
-                        <option value="Non-government Organization">Non-government Organization</option>
-                        <option value="Government">Government</option>
-                        <option value="Other">Other</option>
+                    <select name="companyType" id="" class="form-control" required>
+
+                        @if(count($companyType))
+                            @foreach($companyType as $Types)
+                              <option value="{{ $Types->id }}"
+                              @if($company->companyType_id  == $Types->id) selected @endif
+                              >{{ $Types->name }}</option>
+                            @endforeach
+                        @endif
+
                     </select>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-md-6 {{ $errors->has('industryType') ? ' has-error' : '' }}">
                     <label for="industryType">Industry type</label>
                     <select name="industryType" id="" class="form-control" required>
-                        <option value="">--select job Category--</option>
-                        <option value="IT/Software">IT/Software</option>
-                        <option value="Accounting">Accounting</option>
-                        <option value="Telecommunication">Telecommunication</option>
+
+                        @if(count($industryType))
+                            @foreach($industryType as $industry)
+                                <option value="{{ $industry->id }}"
+                                        @if($company->industryType_id  == $industry->id) selected @endif
+                                >{{ $industry->name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="col-md-6 {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -48,23 +57,30 @@
                 <div class="col-md-6 {{ $errors->has('employeeSize') ? ' has-error' : '' }}">
                     <label for="exampleInputEmail1">Number of Employees</label>
                     <select name="employeeSize" id="" class="form-control" required>
-                        <option value="">--select employee size--</option>
-                        <option value="1-19">1-19 employees</option>
-                        <option value="20-49">20-49 employees</option>
-                        <option value="50-99">50-99 employees</option>
-                        <option value="100-199">100-199 employees</option>
-                        <option value="200-499">200-499 employees</option>
-                        <option value="500-up">500-up employees</option>
+                        @if(count($employeeSize))
+                            @foreach($employeeSize as $employeeSizes)
+                                <option value="{{ $employeeSizes->id }}"
+                                        @if($company->employeeSize_id  == $employeeSizes->id)
+                                            selected
+                                        @endif
+                                >{{ $employeeSizes->name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
 
                 <div class="col-md-6 {{ $errors->has('location') ? ' has-error' : '' }}">
                     <label for="location">Company location</label>
                     <select name="location" id="" class="form-control" required>
-                        <option value="">--select location--</option>
-                        <option value="Phnom Penh">IT/Software</option>
-                        <option value="Kompot">Kompot</option>
-                        <option value="Svey Reing">Kompot</option>
+                        @if(count($location))
+                            @foreach($location as $locations)
+                                <option value="{{ $locations->id }}"
+                                        @if($company->location_id  == $locations->id)
+                                        selected
+                                        @endif
+                                >{{ $locations->name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
 

@@ -20,16 +20,15 @@ class CreateJobsTable extends Migration
             $table->string('jobTitle');
             $table->longText('jobDescription');
             $table->longText('jobRequirement');
-            $table->string('contractType');
-            $table->string('jobCategory');
-            $table->string('salary');
-            $table->string('jobLocation');
+            $table->integer('contractType_id');
+            $table->integer('category_id');
+            $table->integer('salaryRange_id');
+            $table->integer('location_id');
             $table->string('hire');
             $table->string('deadLine');
-
-            $table->string('level');
-            $table->string('degree');
-            $table->string('experience');
+            $table->integer('level_id');
+            $table->integer('degree_id');
+            $table->integer('preferred_experience_id');
             $table->string('language');
 
             $table->timestamps();

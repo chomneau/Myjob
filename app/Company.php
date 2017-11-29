@@ -19,8 +19,13 @@ class Company extends Model
         return $this->hasMany('App\Note');
     }
 
+    public function companyType()
+    {
+        return $this->belongsTo(CompanyType::class);
+    }
+
     protected $fillable  = [
-        'user_id', 'companyName', 'contactPerson', 'employeeSize', 'type', 'industryType',
+        'user_id', 'category_id', 'companyName', 'contactPerson', 'employeeSize', 'type', 'industryType',
         'email', 'phone', 'website', 'address', 'logo', 'location'
     ];
 }

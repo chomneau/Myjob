@@ -2,61 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
-use App\Job;
-use App\Location;
-use View;
+use App\SalaryRange;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use Session;
 
-class FindJobController extends Controller
+class SalaryRangeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
     public function __construct()
     {
-        $this->location = Location::orderBy('name', 'Asc')->take(4)->get();
-        View::share('location', $this->location);
+        $this->middleware('auth:admin');
     }
 
     public function index()
     {
-//        $job = Job::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-
-//        return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
-//
-
-       // $jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-
-        $job = Job::with('company')->take(20)->get();
-        return view('pages.findjob')->with('job',$job);
-       // return view('pages.findjob')->with(['job'=>$job, 'location'=>$jobLocation]);
-
-}
-
-
-//        foreach ($job->company as $com){
-//            echo $com->companyName;
-//        }
-
-//        $company = Company::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-//        return view('pages.findjob')->with('company', $company);
-
-
-
-    public function countLocation()
-    {
-        $jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-        return $jobLocation;
-        //return view('pages.findjob')->with('location', $jobLocation);
+        $salaryRange = SalaryRange::all();
+        return view('admin.salary_range.index')->with('salaryRange', $salaryRange);
     }
 
     /**
@@ -77,7 +43,15 @@ class FindJobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $salaryRange = new SalaryRange;
+        $salaryRange->name = $request->name;
+        $salaryRange->admin_id = auth()->user()->id;
+        $salaryRange->save();
+        Session::flash('success', 'Salary Range is created successfully');
+        return redirect()->back();
     }
 
     /**
@@ -99,7 +73,8 @@ class FindJobController extends Controller
      */
     public function edit($id)
     {
-        //
+        $salaryRange = SalaryRange::find($id);
+        return view('admin.salary_range.editSalaryRange')->with('salaryRange', $salaryRange);
     }
 
     /**
@@ -111,7 +86,15 @@ class FindJobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $salaryRange = SalaryRange::find($id);
+        $salaryRange->name = $request->name;
+        $salaryRange->admin_id = auth()->user()->id;
+        $salaryRange->save();
+        Session::flash('success', 'Salary Range is updated successfully!');
+        return redirect('admin/salaryRange');
     }
 
     /**
@@ -122,6 +105,9 @@ class FindJobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $salaryRange = SalaryRange::find($id);
+        $salaryRange->delete();
+        Session::flash('success', 'Salary Range is deleted successfully!');
+        return redirect('admin/salaryRange');
     }
 }

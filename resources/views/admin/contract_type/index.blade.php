@@ -1,10 +1,13 @@
-{{--index of industry section--}}
-{{--jquery for alert delete--}}
-<script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
-        crossorigin="anonymous">
-</script>
+
+{{--<script--}}
+        {{--src="https://code.jquery.com/jquery-3.2.1.slim.min.js"--}}
+        {{--integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="--}}
+        {{--crossorigin="anonymous">--}}
+
+{{--</script>--}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 @extends('admin.admin-layout.main')
 
@@ -15,7 +18,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>All Industry Type <small>setting</small></h3>
+                    <h3>All Contract Types <small>setting</small></h3>
                 </div>
 
                 <div class="title_right">
@@ -52,11 +55,11 @@
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
                             </ul>
-                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add-category">
-                                Add new industry type
+                            <a href="#" id="addCategory" class="btn btn-success" data-toggle="modal" data-target="#add-category">
+                                Add new contract type
                                 <i class="glyphicon glyphicon-plus-sign"></i>
                             </a>
-                            @include('admin.industry.industry-from')
+                            @include('admin.contract_type.contractType-form')
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -66,50 +69,75 @@
                                 <thead>
                                 <tr>
                                     <th style="width: 1%">#</th>
-                                    <th style="width: 20%">Category Name</th>
-                                    <th>Created_at</th>
+                                    <th style="width: 20%">Contract Type</th>
+                                    <th>by admin_id</th>
                                     <th>updated_at</th>
                                     <th style="width: 20%">#Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(count($industry))
-                                    @foreach($industry as $industryType)
+                                @if(count($contractType))
+                                    @foreach($contractType as $contractTypes)
                                         <tr>
-                                            <td>#{{ $industryType->id }}</td>
-                                            <td>
-                                                <a>{{ $industryType->name }}</a>
-                                                <br />
+                                            <td>#{{ $contractTypes->id }}</td>
+                                            <td id="dataItem" data-toggle="modal" data-target="#editCategory">
+                                                <input type="hidden" id="itemId" value="{{ $contractTypes->id }}">
+                                                {{ $contractTypes->name }}
+                                                {{--<br />--}}
                                                 {{--<small>Created by {{ Auth::user()->name }}</small>--}}
+
                                             </td>
 
                                             <td>
-                                                {{ $industryType->created_at }}
+                                                {{ $contractTypes->admin_id }}
 
                                             </td>
                                             <td>
-                                                {{ $industryType->updated_at }}
+                                                {{ $contractTypes->updated_at }}
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('industry.edit', ['id'=>$industryType->id] ) }}" class="btn btn-primary btn-xs">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    Edit
+                                                <a href="{{ route('contractType.edit', ['id'=>$contractTypes->id] ) }}" class="btn btn-primary btn-xs"
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i> Edit
                                                 </a>
 
-                                                <a href="{{ route('industry.delete', ['id'=> $industryType->id]) }}" class="btn btn-danger btn-xs"
+
+                                                <a href="{{ route('contractType.delete', ['id'=>$contractTypes->id]) }}" class="btn btn-danger btn-xs"
                                                    id="confirmation">
-
-
                                                     <i class="fa fa-trash"></i>
                                                     Delete
                                                 </a>
+                                                {{--include edit form for category--}}
+                                                {{--@include('admin.category.editCategory')--}}
                                                 <script type="text/javascript">
                                                     $('#confirmation').on('click', function () {
-                                                        return confirm('Are you sure?');
+                                                        return confirm('Are you sure? You want to delete category!');
                                                     });
                                                 </script>
-                                                {{--<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>--}}
+                                                <script type="text/javascript">
+//                                                    $(document).ready(function () {
+//                                                        $(document).on('click','#editButton', function (event) {
+//                                                            var text = $('#dataItem').text();
+//                                                            var text = $.trim(text);
+//                                                            var id = $(this).find('#itemId').val();
+//                                                            $('#addItem').val(text);
+//                                                            $('#id').val(id);
+//                                                            console.log(text);
+//                                                        });
+//                                                        $('#update').click(function(event){
+//                                                            var id = $('#id').val();
+//                                                            var value = $.trim($('#addItem').val());
+//                                                            $.post('update', {'id':id, 'value':value,'_token':$('input[name=_token]').val()}, function(data){
+//                                                                $('#ItemLoad').load(location.href + ' #ItemLoad');
+//                                                                console.log(data);
+//                                                            });
+//                                                        });
+//
+//
+//                                                    });
+
+
+                                                </script>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -126,7 +154,6 @@
         </div>
     </div>
     <!-- /page content -->
-    <!-- Include jQuery - see http://jquery.com -->
 
 
 @endsection

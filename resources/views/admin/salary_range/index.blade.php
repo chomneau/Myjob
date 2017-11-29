@@ -15,7 +15,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>All Industry Type <small>setting</small></h3>
+                    <h3>All Salary Range <small>setting</small></h3>
                 </div>
 
                 <div class="title_right">
@@ -53,10 +53,10 @@
                                 </li>
                             </ul>
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add-category">
-                                Add new industry type
+                                Add new salary range
                                 <i class="glyphicon glyphicon-plus-sign"></i>
                             </a>
-                            @include('admin.industry.industry-from')
+                            @include('admin.salary_range.salaryRange-from')
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -65,39 +65,41 @@
                             <table class="table table-striped projects">
                                 <thead>
                                 <tr>
-                                    <th style="width: 1%">#</th>
-                                    <th style="width: 20%">Category Name</th>
-                                    <th>Created_at</th>
+                                    <th style="width: 1%">#id</th>
+                                    <th style="width: 20%">Salary range</th>
+                                    <th>By admin_id</th>
                                     <th>updated_at</th>
                                     <th style="width: 20%">#Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if(count($industry))
-                                    @foreach($industry as $industryType)
+                                @if(count($salaryRange))
+                                    @foreach($salaryRange->sortByDesc('created_at') as $salaryRanges)
                                         <tr>
-                                            <td>#{{ $industryType->id }}</td>
+                                            <td>{{ $salaryRanges->id }}</td>
                                             <td>
-                                                <a>{{ $industryType->name }}</a>
+                                                <a>{{ $salaryRanges->name }}</a>
                                                 <br />
-                                                {{--<small>Created by {{ Auth::user()->name }}</small>--}}
+
                                             </td>
 
                                             <td>
-                                                {{ $industryType->created_at }}
+
+                                                    {{ $salaryRanges->admin_id }}
+
 
                                             </td>
                                             <td>
-                                                {{ $industryType->updated_at }}
+                                                {{ $salaryRanges->updated_at }}
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('industry.edit', ['id'=>$industryType->id] ) }}" class="btn btn-primary btn-xs">
+                                                <a href="{{ route('salaryRange.edit', ['id'=>$salaryRanges->id] ) }}" class="btn btn-primary btn-xs">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                     Edit
                                                 </a>
 
-                                                <a href="{{ route('industry.delete', ['id'=> $industryType->id]) }}" class="btn btn-danger btn-xs"
+                                                <a href="{{ route('salaryRange.delete', ['id'=> $salaryRanges->id]) }}" class="btn btn-danger btn-xs"
                                                    id="confirmation">
 
 
