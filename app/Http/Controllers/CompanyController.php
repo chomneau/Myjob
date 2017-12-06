@@ -11,6 +11,7 @@ use App\ContractType;
 use App\Degree;
 use App\EmployeeNumber;
 use App\IndustryType;
+use App\Job;
 use App\Level;
 use App\Location;
 use App\Note;
@@ -65,10 +66,14 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company = Company::orderBy('created_at', 'desc')
+        $company = Company::with('industryType')->orderBy('created_at', 'desc')
             ->take(10)
             ->get();
-        return view('admin.company.view-all-company')->with('company', $company);
+       return view('admin.company.view-all-company')->with('company', $company);
+//    $industry = IndustryType::with('company')->orderBy('created_at', 'desc')
+//            ->take(10)
+//            ->get();
+//        return view('admin.company.view-all-company')->with('industry', $industry);
     }
 
     /**
@@ -111,7 +116,7 @@ class CompanyController extends Controller
         $company->contactPerson = $request->contactPerson;
         $company->employeeSize_id = $request->employeeSize;
         $company->companyType_id = $request->companyType;
-        $company->industryType_id = $request->industryType;
+        $company->industry_type_id = $request->industryType;
         $company->email = $request->email;
         $company->phone = $request->phone;
         $company->location_id = $request->location;
@@ -147,12 +152,15 @@ class CompanyController extends Controller
 
 
        // $user = Auth::user();
+        //$jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
+
         $company = Company::find($id);
         return view('admin.company.company-profile')
             ->with([
                 'company'=>$company,
                 'note'=>$company->note,
                 'jobPost'=>$company->job,
+
             ]);
      //  return view('admin.company.company-profile')->with('company', $company);
     }
@@ -200,7 +208,7 @@ class CompanyController extends Controller
         $company->contactPerson = $request->contactPerson;
         $company->employeeSize_id = $request->employeeSize;
         $company->companyType_id = $request->companyType;
-        $company->industryType_id = $request->industryType;
+        $company->industry_type_id = $request->industryType;
         $company->email = $request->email;
         $company->phone = $request->phone;
         $company->location_id = $request->location;

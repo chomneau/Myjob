@@ -7,94 +7,38 @@
     @include('inc.search')
     <div class="container" style="margin-top: 2em">
         <div class="row">
-            <div class="col-md-4 col-sm-12 pull-left">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="font-size: 18px; letter-spacing: 2px; color: #1b6d85 ">QUICK ACCESS</div>
-                        <div class="panel-body">
-
-                                <ul class="list-group">
-                                    @if(count($location))
-                                        @foreach($location as $locations)
-                                            <li class="list-group-item">
-                                                    {{ $locations->name }} <span class="badge">12</span>
-                                            </li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-
-                        </div>
-                    </div>
-
-
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="font-size: 18px; letter-spacing: 2px; color: #1b6d85 ">CATEGORY</div>
-                    <div class="panel-body">
-                        <div class="panel-body">
-                            <select class="form-control" id="select">
-                                <option value="accounting">Accounting</option>
-                                <option value="it">IT Programing</option>
-                                <option value="marketing">Marketing</option>
-                            </select>
-
-                            <br>
-
-                            <select class="form-control" id="select">
-                                <option value="accounting">Accounting</option>
-                                <option value="it">IT Programing</option>
-                                <option value="marketing">Marketing</option>
-                            </select>
-
-                            <br>
-
-                            <select class="form-control" id="select">
-                                <option value="accounting">Accounting</option>
-                                <option value="it">IT Programing</option>
-                                <option value="marketing">Marketing</option>
-                            </select>
-
-                            <br>
-
-                            <select class="form-control" id="select">
-                                <option value="accounting">Accounting</option>
-                                <option value="it">IT Programing</option>
-                                <option value="marketing">Marketing</option>
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('pages.find-by-sidebar')
 
             {{--Listing job in the right side--}}
 
             <div class="col-md-8 col-sm-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="font-size: 18px; letter-spacing: 2px;color: #1b6d85 ">LATEST JOBS</div>
+                    <div class="panel-heading" style="font-size: 18px; ;color: #1b6d85 ">LATEST JOBS</div>
                     <div class="panel-body">
                         @if(count($job))
                             @foreach($job as $jobs)
                                 <div class="row">
 
-                                    <div class="col-md-3 col-sm-12">
-                                        <div class="thumbnail">
-                                            <a href="#"><img src="{{ asset($jobs->company->logo) }} " alt="" style=" width: 120px; height: 110px " ></a>
+                                    <div class="col-md-2 col-sm-12">
+                                        <div style="margin-left: 12px">
+                                            <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}"><img src="{{ asset($jobs->company->logo) }} " alt="" style=" width: 80px; height: 75px " ></a>
                                         </div>
                                     </div>
 
 
-                                    <div class="col-md-9 col-sm-12">
+                                    <div class="col-md-10 col-sm-12">
                                         <div class="bs-component">
                                             <div class="list-group">
-                                                <a href="#" >
-                                                    <p style="font-size: 25px"> {{ $jobs->jobTitle }}</p>
+                                                <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}" >
+                                                    <p style="font-size: 18px"> {{ $jobs->jobTitle }}</p>
                                                 </a>
                                                 <button class="btn btn-primary pull-right" style="margin-top: -20px">
-                                                    <a href="#" style="color: #f0f0f0">View now</a>
+                                                    <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}" style="color: #f0f0f0">View now</a>
                                                 </button>
                                                 <a href="#" >
-                                                     <p style="font-size: 16px"><i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                     <p style="font-size: 14px"><i class="fa fa-briefcase" aria-hidden="true"></i>
                                                         {{ $jobs->company->companyName }}
-                                                         <small>|
+                                                         <small style="color: #8a92a0">|
                                                          {{ Carbon\Carbon::createFromTimestamp(strtotime($jobs->created_at))->diffForHumans() }}
                                                          </small>
 
@@ -107,11 +51,12 @@
 
                                                         <div class="col-md-3 col-sm-12">
                                                             <h5 style="color: #0DC2C9"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                                {{ $jobs->jobLocation }}
+
+                                                                {{ $jobs->location->name }}
                                                             </h5>
                                                         </div>
                                                         <div class="col-md-3 col-sm-12">
-                                                            <a href="#" data-toggle="tooltip" title="Expired date!">
+                                                            <a href="#" data-toggle="tooltip" title="Deadline!">
                                                             <h5 style="color: #C97975">
 
                                                                 <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
@@ -131,12 +76,23 @@
                                                         </div>
                                                         <div class="col-md-3 col-sm-12">
                                                             <h5 style="color: #0DC2C9"><i class="fa fa-id-card-o" aria-hidden="true"></i>
-                                                                {{ $jobs->jobCategory }}
+
+                                                                @foreach($countCategory as $countCategories)
+                                                                    @if($countCategories->id == $jobs->category_id)
+                                                                        {{ $countCategories->name }}
+                                                                    @endif
+                                                                @endforeach
+
                                                             </h5>
                                                         </div>
                                                         <div class="col-md-3 col-sm-12">
                                                             <h5 style="color: #0DC2C9"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                                {{ $jobs->contractType }}
+                                                                @foreach($contractType as $contractTypes)
+                                                                    @if($contractTypes->id == $jobs->contractType_id)
+                                                                        {{ $contractTypes->name }}
+                                                                    @endif
+                                                                @endforeach
+
                                                             </h5>
                                                         </div>
                                                     </div>

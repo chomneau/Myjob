@@ -77,7 +77,7 @@
             <div class="row">
                 <div class="col-md-6 {{ $errors->has('employeeSize') ? ' has-error' : '' }}">
                     <label for="exampleInputEmail1">Mobile Number</label>
-                    <input type="number" name="phone" class="form-control" value="{{ old('phone') }}" required autofocus placeholder="Phone" required>
+                    <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" required autofocus placeholder="Phone" required>
                 </div>
                 <div class="col-md-6 {{ $errors->has('website') ? ' has-error' : '' }}">
                     <label for="exampleInputEmail1">Website (url)</label>

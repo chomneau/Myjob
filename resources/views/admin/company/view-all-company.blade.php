@@ -70,10 +70,16 @@
                                         <td>
                                             <a>{{ $com->companyName }}</a>
                                             <br />
-                                            <small>Created {{ $com->created_at }}</small>
+                                            <small>Created {{ $com->created_at->diffForHumans() }}</small>
                                         </td>
                                         <td>
-                                            {{ $com->industryType }}
+                                            @if(count($industryType))
+                                                @foreach($industryType as $industryTypes)
+                                                    @if($industryTypes->id == $com->industry_type_id)
+                                                        {{ $industryTypes->name }}
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         </td>
                                         <td class="project_progress">
                                             <div class="progress progress_sm">

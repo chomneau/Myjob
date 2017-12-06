@@ -24,6 +24,10 @@ class Company extends Model
         return $this->belongsTo(CompanyType::class);
     }
 
+    public function industryType(){
+        return $this->belongsTo(IndustryType::class);
+    }
+
     protected $fillable  = [
         'user_id', 'category_id', 'companyName', 'contactPerson', 'employeeSize', 'type', 'industryType',
         'email', 'phone', 'website', 'address', 'logo', 'location'

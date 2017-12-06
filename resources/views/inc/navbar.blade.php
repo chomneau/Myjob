@@ -3,7 +3,9 @@
         <div class="navbar navbar-default navbar-fixed-top ">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="../" class="navbar-brand" style="font-size: 2em; font-family: 'Abel', sans-serif;; color: #ede3e3"><i class="fa fa-briefcase" aria-hidden="true"></i> easybook.com</a>
+                    <a href="/" class="navbar-brand" style="font-size: 2em; font-family: 'Abel', sans-serif;; color: #ede3e3">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                        onlinejob.com</a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -14,7 +16,7 @@
                     <ul class="nav navbar-nav" style="margin-left: 20%">
                         @if (Auth::guest() || Auth::guard('web')->check())
                             <li>
-                                <a href="../">Home</a>
+                                <a href="/">Home</a>
                             </li>
 
                             <li>

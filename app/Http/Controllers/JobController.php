@@ -143,10 +143,10 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+   public function show()
+   {
+       //
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -154,10 +154,11 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $company_id)
     {
         $job = Job::find($id);
-        return view('admin.job.edit-job')->with('job', $job);
+        $company = Company::find($company_id);
+        return view('admin.job.edit-job')->with(['job'=>$job, 'company'=>$company]);
     }
 
     /**
@@ -167,7 +168,7 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $company_id)
     {
         $this->validate($request, [
 
@@ -190,7 +191,7 @@ class JobController extends Controller
         ]);
 
         // $user = Auth::user();
-        $company = Company::find($id);
+        $company = Company::find($company_id);
         $job = Job::find($id);
         $job->jobTitle = $request->jobTitle;
         $job->jobDescription = $request->jobDescription;

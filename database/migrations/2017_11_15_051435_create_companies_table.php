@@ -21,9 +21,9 @@ class CreateCompaniesTable extends Migration
             $table->string('contactPerson');
             $table->integer('employeeSize_id');
             $table->integer('companyType_id');
-            $table->integer('industryType_id');
+            $table->integer('industry_type_id');
             $table->string('email');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->string('website')->nullable();
             $table->string('address');
             $table->integer('location_id');

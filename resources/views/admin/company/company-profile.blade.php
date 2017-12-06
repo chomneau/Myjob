@@ -52,18 +52,28 @@
                                     <img class="img-responsive avatar-view" src="{{ asset($company->logo) }}" width="170" height="170" alt="Avatar" title="Change the avatar">
                                 </div>
                             </div>
-                            <h3>{{ $company->companyName }}</h3>
+                            <h2>{{ $company->companyName }}</h2>
 
                             <ul class="list-unstyled user_data">
                                 <li>
                                     <h5>
                                         <i class="fa fa-map-marker user-profile-icon"></i>
-                                        {{ $company->location }}, Cambodia
+                                        @foreach($location as $locations)
+                                            @if($locations->id == $company->location_id)
+                                                {{ $locations->name }}
+                                            @endif
+                                        @endforeach
+                                        , Cambodia
                                     </h5>
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-briefcase user-profile-icon"></i> {{ $company->industryType }}
+                                    <i class="fa fa-briefcase user-profile-icon"></i>
+                                    @foreach($companyType as $companyTypes)
+                                        @if($companyTypes->id == $company->companyType_id)
+                                            {{ $companyTypes->name }}
+                                        @endif
+                                    @endforeach
                                 </li>
 
                                 <li class="m-top-xs">
@@ -72,8 +82,7 @@
                                 </li>
                             </ul>
 
-                            <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
-                            <br />
+
 
                             <!-- start skills -->
                             <h4>Company Info</h4>
@@ -82,7 +91,7 @@
                                     <strong>Contact Person :</strong> {{ $company->contactPerson }}
                                 </li>
                                 <li>
-                                    <strong>Phone :</strong>(+855 ) {{ $company->phone }}
+                                    <strong>Phone :</strong>(+855) {{ $company->phone }}
                                     {{--<p>Web Applications</p>--}}
                                     {{--<div class="progress progress_sm">--}}
                                         {{--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>--}}
@@ -96,14 +105,28 @@
                                     {{--</div>--}}
                                 </li>
                                 <li>
-                                    <strong>Industry Type :</strong> {{ $company->industryType }}
+                                    <strong>Industry Type :</strong>
+                                    @foreach($industryType as $indus)
+                                        @if($indus->id == $company->industryType_id)
+                                              {{ $indus->name }}
+                                        @endif
+                                    @endforeach
+                                    {{--@if($industryType->id == $company->industryType_id)--}}
+                                        {{--12--}}
+                                    {{--@endif--}}
                                     {{--<p>Automation & Testing</p>--}}
                                     {{--<div class="progress progress_sm">--}}
                                         {{--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>--}}
                                     {{--</div>--}}
                                 </li>
                                 <li>
-                                    <strong>Employees :</strong> {{ $company->employeeSize }} employees
+                                    <strong>Employees :</strong>
+                                    @foreach($employeeSize as $employee)
+                                        @if($employee->id == $company->employeeSize_id)
+                                            {{ $employee->name }}
+                                        @endif
+                                    @endforeach
+
                                     {{--<p>UI / UX</p>--}}
                                     {{--<div class="progress progress_sm">--}}
                                         {{--<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>--}}
@@ -113,11 +136,9 @@
                             </ul>
                             <!-- end of skills -->
 
-                            <a href="{{ route('createjob.create', ['id'=>$company->id]) }}" class="btn btn-success" >
-                                {{--data-toggle="modal" data-target="#post-smallModal"--}}
-                                <i class="glyphicon glyphicon-plus-sign"></i>
-                                Post a new job
-                            </a>
+                            <a href="{{ route('company.edit', ['id'=>$company->id]) }}" class="btn btn-success">
+                                <i class="fa fa-edit m-right-xs"></i> Edit Profile</a>
+                            <br />
 
                             {{--@include('admin.job.topup-form-create')--}}
 
@@ -130,14 +151,18 @@
                                 <ul class="stats-overview">
                                     <li>
                                         <span class="name"> Total of Job Posted </span>
-                                        <span class="value text-success"> 2300 </span>
+                                        <span class="value text-success">
+
+                                                    {{ $jobPost->count() }}
+
+                                        </span>
                                     </li>
                                     <li>
                                         <span class="name"> Active job posting </span>
                                         <span class="value text-success"> 2000 </span>
                                     </li>
                                     <li class="hidden-phone">
-                                        <span class="name"> Total applications </span>
+                                        <span class="name"> Total Views </span>
                                         <span class="value text-success"> 20 </span>
                                     </li>
                                 </ul>
@@ -166,14 +191,18 @@
                                 <div id="myTabContent" class="tab-content">
 
                                     <div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab">
-
+                                        <a href="{{ route('createjob.create', ['id'=>$company->id]) }}" class="btn btn-success" >
+                                            {{--data-toggle="modal" data-target="#post-smallModal"--}}
+                                            Post a new job
+                                            <i class="glyphicon glyphicon-plus-sign"></i>
+                                        </a>
                                         <!-- start user projects -->
                                         <table class="data table table-striped no-margin">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Job Title</th>
-                                                <th>Post date</th>
+                                                <th>Posted date</th>
                                                 <th class="hidden-phone">views</th>
                                                 <th>action</th>
                                             </tr>
@@ -183,13 +212,13 @@
                                             @if(count($jobPost))
                                                 @foreach($jobPost->sortByDesc('created_at') as $job)
                                                     <tr>
-                                                        <td>#</td>
+                                                        <td>#{{ $job->id }}</td>
                                                         <td>{{ $job->jobTitle }}</td>
                                                         <td>{{ $job->created_at->format('l F j, Y') }}</td>
                                                         <td class="hidden-phone">18</td>
                                                         <td class="vertical-align-mid">
-                                                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                            <a href="#" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit </a>
+                                                            <a href="{{ route('createjob.show', ['id'=>$job->id, 'company_id'=>$company->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                                            <a href="{{ route('createjob.edit', ['id'=>$job->id, 'company_id'=>$company->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit </a>
                                                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-delete"></i> Delete </a>
                                                         </td>
                                                     </tr>

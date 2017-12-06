@@ -15,14 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/form', 'PagesController@form');
 Route::post('/form', 'PagesController@store');
 
 Auth::routes();
 Route::get('/about', 'PagesController@getAbout');
 Route::get('/contact', 'PagesController@getContact');
-Route::get('/findjob', 'PagesController@getFindJob');
+
 Route::get('/postjob', 'PagesController@getPostjob');
+
+
+//findjob
+Route::get('/findjob', 'FindJobController@index')->name('findjob');
+Route::get('/singleJob/{id}/{company_id}', 'FindJobController@show')->name('singleJob');
+Route::get('/jobByCategory/{id}', 'FindJobController@jobByCategory')->name('jobByCategory');
 
 //Route::get('/home', 'HomeController@index');
 //Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
@@ -57,8 +64,6 @@ Route::post('/education/update/{id}', 'UserEducationController@update')->name('e
 Route::get('/education/delete/{id}', 'UserEducationController@destroy')->name('education.delete');
 
 
-//findjob
-Route::get('/findjob', 'FindJobController@index')->name('findjob');
 
 
 
@@ -138,7 +143,9 @@ Route::prefix('admin')->group(function (){
 //create new job
     Route::resource('/createjob', 'JobController');
 
-    Route::post('/createjob/postjob/{id}', 'JobController@store')->name('createjob.postjob');
+    Route::post('/createjob/{id}', 'JobController@store')->name('createjob.postjob');
+    Route::get('/createjob/edit/{id}/{company_id}', 'JobController@edit')->name('createjob.edit');
+    Route::post('/createjob/update/{id}/{company_id}', 'JobController@update')->name('createjob.update');
 
     //company controller
     Route::resource('/company', 'CompanyController');

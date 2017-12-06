@@ -9,10 +9,14 @@
     <div class="col-md-6">
         <label for="exampleInputEmail1">Job Category</label>
         <select name="jobCategory" id="" class="form-control" required>
-            <option value="">--select job Category--</option>
+            <option value=" ">--select job category --</option>
             @if(count($category))
                 @foreach($category as $categories)
-                    <option value="{{ $categories->id }}">{{ $categories->name }}</option>
+                    <option value="{{ $categories->id }}"
+                        @if($job->category_id  == $categories->id)
+                            selected
+                        @endif
+                    >{{ $categories->name }}</option>
                 @endforeach
             @endif
             {{--<option value="Part time">Accounting</option>--}}
@@ -26,7 +30,11 @@
             <option value=" ">--select contract type --</option>
             @if(count($contractType))
                 @foreach($contractType as $contractTypes)
-                    <option value="{{ $contractTypes->id }}">{{ $contractTypes->name }}</option>
+                    <option value="{{ $contractTypes->id }}"
+                        @if($job->contractType_id  == $contractTypes->id)
+                            selected
+                        @endif
+                    >{{ $contractTypes->name }}</option>
                 @endforeach
             @endif
         </select>
@@ -43,7 +51,11 @@
 
             @if(count($salaryRange))
                 @foreach($salaryRange as $salaryRanges)
-                    <option value="{{ $salaryRanges->id }}">{{ $salaryRanges->name }}</option>
+                    <option value="{{ $salaryRanges->id }}"
+                       @if($job->salaryRange_id  == $salaryRanges->id)
+                            selected
+                       @endif
+                    >{{ $salaryRanges->name }}</option>
                 @endforeach
             @endif
         </select>
@@ -54,7 +66,11 @@
             <option value="">--select job location--</option>
             @if(count($location))
                 @foreach($location as $locations)
-                    <option value="{{ $locations->id }}">{{ $locations->name }}</option>
+                    <option value="{{ $locations->id }}"
+                        @if($job->location_id  == $locations->id)
+                            selected
+                        @endif
+                    >{{ $locations->name }}</option>
                 @endforeach
             @endif
 
@@ -66,7 +82,7 @@
 <div class="row">
     <div class="col-md-6">
         <label for="jobHiring">Number of hire</label>
-        <input type="number" name="jobHiring" class="form-control" placeholder="number of hire" required>
+        <input type="number" name="jobHiring" value="{{ $job->hire }}" class="form-control" placeholder="number of hire" required>
     </div>
     {{--dateline picker--}}
     <div class="col-md-6">
