@@ -32,8 +32,8 @@
                                                 <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}" >
                                                     <p style="font-size: 18px"> {{ $jobs->jobTitle }}</p>
                                                 </a>
-                                                <button class="btn btn-primary pull-right" style="margin-top: -20px">
-                                                    <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}" style="color: #f0f0f0">View now</a>
+                                                <button class="mybtn pull-right" style="margin-top: -20px">
+                                                    <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}" >View now</a>
                                                 </button>
                                                 <a href="#" >
                                                      <p style="font-size: 14px"><i class="fa fa-briefcase" aria-hidden="true"></i>
@@ -75,7 +75,7 @@
                                                             </script>
                                                         </div>
                                                         <div class="col-md-3 col-sm-12">
-                                                            <h5 style="color: #0DC2C9"><i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                            <h5 style="color: #0DC2C9"><i class="fa fa-bookmark" aria-hidden="true"></i>
 
                                                                 @foreach($countCategory as $countCategories)
                                                                     @if($countCategories->id == $jobs->category_id)
@@ -101,6 +101,7 @@
                                     </div>
                             </div>
                         @endforeach
+                                <div style="margin-bottom: 3.5em"></div>
                         @endif
 
                             {{--@component('components.who')--}}

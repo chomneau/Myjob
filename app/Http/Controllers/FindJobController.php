@@ -30,7 +30,7 @@ class FindJobController extends Controller
      */
     public function __construct()
     {
-        $this->locationCount = Location::withCount('job')->take(7)->get();
+        $this->locationCount = Location::withCount('job')->orderBy('updated_at', 'Asc')->take(7)->get();
         View::share('locationCount', $this->locationCount);
 
 
@@ -66,10 +66,6 @@ class FindJobController extends Controller
 
     public function index()
     {
-//        $job = Job::orderBy('created_at', 'desc')
-//            ->take(20)
-//            ->get();
-
 
         $job = Job::with('company')->orderBy('created_at', 'Desc')->take(20)->get();
         $location = Location::withCount('job')->take(7)->get();
@@ -81,24 +77,9 @@ class FindJobController extends Controller
             'countCategory'=>$category,
             'countIndustry'=>$industryType,
         ]);
+    }
 
 
-}
-
-//
-//foreach ($location as $locations) {
-//$count_job_location = Job::where('location_id', $locations->id)->count();
-//    // echo $locations->name."(".$count_job_location.")";
-//}
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function jobByCategory($id)
     {
         $catLabel = Category::find($id);
@@ -107,6 +88,61 @@ class FindJobController extends Controller
             ->where('category_id', $id)->orderBy('created_at', 'Desc')->get();
         return view('pages.jobByCategory')->with(['jobByCategory'=> $jobByCategory, 'catLabel'=>$catLabel]);
     }
+
+//job by location
+    public function jobByLocation($id)
+    {
+        $jobLocation = Location::find($id);
+
+        $jobByLocation = Job::with('company')
+            ->where('location_id', $id)->orderBy('created_at', 'Desc')->get();
+        return view('pages.jobByLocation')->with(['jobByLocation'=> $jobByLocation, 'jobLocation'=>$jobLocation]);
+    }
+//Job by industry function
+    public function jobByAllIndustry($id)
+    {
+        //$jobIndustry = IndustryType::find($id);
+
+        $jobByIndustry = Company::with('industryType')
+            ->where('industry_type_id', $id)->orderBy('created_at', 'Desc')->get();
+        return $jobByIndustry;
+        //return view('pages.jobByIndustry')->with(['jobByIndustry'=> $jobByIndustry, 'jobIndustry'=>$jobIndustry]);
+    }
+
+    public function jobByIndustry($id)
+    {
+        $jobIndustry = IndustryType::find($id);
+
+        $jobByIndustry = Job::whereHas('company', function ($query) use($id){
+            $query->where('industry_type_id', $id);
+        })->orderBy('created_at', 'Desc')->get();
+
+        //return $jobByIndustry;
+        return view('pages.jobByIndustry')->with(['jobByIndustry'=> $jobByIndustry, 'jobIndustry'=>$jobIndustry]);
+    }
+
+
+//find job by all location
+    public function allLocation(){
+        $allLocation = $location = Location::withCount('job')->get();
+        return view('pages.all-location')->with('allLocation', $allLocation);
+    }
+
+    //find Job by industry
+
+    public function allIndustry(){
+        $industryType = IndustryType::withCount('company')->get();
+        return view('pages.all-industry')->with('industryType', $industryType);
+    }
+
+    //Find job by Category
+
+    public function allCategory(){
+        $allCategory = Category::withCount('job')->get();
+        return view('pages.all-category')->with('allCategory', $allCategory);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

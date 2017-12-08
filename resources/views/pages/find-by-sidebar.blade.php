@@ -22,7 +22,7 @@
 
 
             <li class="list-group-item text-center text-uppercase" >
-                <a href="#"><strong>View more</strong>  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+                <a href="{{ route('allCategory', ['id'=>$countCategories->id]) }}"><strong>View more</strong>  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
             </li>
         </ul>
     </div>
@@ -35,18 +35,18 @@
             </li>
             @if(count($industryType))
                 @foreach($industryType as $countIndustries)
-                    <a href="">
+                    <a href="{{ route('jobByIndustry', ['id'=>$countIndustries->id]) }}">
                         <li class="list-group-item" style="font-size: 16px; padding-bottom: 15px; padding-top: 15px">
                             {{ $countIndustries->name }}
                             <span class="badge">
-                                        {{ $countIndustries->company->count() }}
-                                    </span>
+                                 {{ $countIndustries->company->count() }}
+                            </span>
                         </li>
                     </a>
                 @endforeach
             @endif
             <li class="list-group-item text-center text-uppercase" >
-                <a href="#"><strong>View more</strong>  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+                <a href="{{ route('allIndustry', ['id'=>$countIndustries->id]) }}"><strong>View more</strong>  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
             </li>
         </ul>
     </div>
@@ -59,7 +59,7 @@
             </li>
             @if(count($locationCount))
                 @foreach($locationCount as $locationCounts)
-                    <a href="#">
+                    <a href="{{ route('jobByLocation', ['id'=>$locationCounts->id]) }}">
                         <li class="list-group-item" style="font-size: 16px; padding-bottom: 15px; padding-top: 15px">
                             {{ $locationCounts->name }}
                             <span class="badge">
@@ -70,7 +70,7 @@
                 @endforeach
             @endif
             <li class="list-group-item text-center text-uppercase" >
-                <a href="#"><strong>View more</strong>  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
+                <a href="{{ route('allLocation') }}"><strong>View more</strong>  <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></a>
             </li>
         </ul>
     </div>

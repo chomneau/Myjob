@@ -76,10 +76,24 @@
                                                            <i class="fa fa-briefcase" aria-hidden="true"></i>
                                                         </span>
                                                          {{ $company->companyName }}
+
                                                     </a>
+                                                    <p>
+                                                        <a href="#" style="font-size: 14px; margin-top: -20px; color: #abbbd8">
+                                                        <span style="color: #00AEEF">
+                                                           <i class="fa fa-building-o" aria-hidden="true"></i> &nbsp
+                                                        </span>
+                                                            @foreach($industryType as $industryTypes)
+                                                                @if($industryTypes->id == $company->industry_type_id)
+                                                                    {{ $industryTypes->name }}
+                                                                @endif
+                                                            @endforeach
+                                                        </a>
+                                                    </p>
+
                                                 </div>
                                                 <div class="col-md-6" style="margin-top: 35px; padding-right: 25px">
-                                                    <button class="btn btn-primary pull-right">APPLY NOW!</button>
+                                                    <button class="btn-apply pull-right">Apply Now !</button>
                                                 </div>
                                             </div>
 
@@ -124,7 +138,7 @@
                                                 @foreach($countCategory as $countCategories)
                                                     @if($countCategories->id == $singleJob->category_id)
                                                         <span style="color: #00AEEF">
-                                                            <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                            <i class="fa fa-bookmark" aria-hidden="true"></i>
                                                         </span>
 
                                                         {{ $countCategories->name }}
@@ -137,7 +151,7 @@
                                             <span style="color: #00AEEF">
                                                <i class="fa fa-user" aria-hidden="true"></i> Hire :
                                             </span>
-                                             {{ $singleJob->hire }} pos(s)
+                                             {{ $singleJob->hire }} <span style="color: #abbbd8">pos(s)</span>
                                         </div>
 
                                     </div>
@@ -152,7 +166,7 @@
                                                 <span style="color: #00AEEF">
                                                    <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
                                                 </span>
-                                                Level : {{ $levels->name }}
+                                                <span style="color: #abbbd8">Level </span> : {{ $levels->name }}
                                             @endif
                                         @endforeach
                                     @endif
@@ -165,7 +179,8 @@
                                                 <span style="color: #00AEEF">
                                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                                 </span>
-                                                Degree : {{ $degrees->name }}
+                                                <span style="color: #abbbd8">Degree </span>
+                                                 : {{ $degrees->name }}
                                             @endif
                                         @endforeach
                                     @endif
@@ -179,7 +194,8 @@
                                                 <span style="color: #00AEEF">
                                                    <i class="fa fa-sliders" aria-hidden="true"></i>
                                                 </span>
-                                                Experience : {{ $preExperiences->name }}
+                                                <span style="color: #abbbd8">Experience </span>
+                                                 : {{ $preExperiences->name }}
                                             @endif
                                         @endforeach
                                     @endif
@@ -191,7 +207,8 @@
                                   <span style="color: #00AEEF">
                                        <i class="fa fa-language" aria-hidden="true"></i>
                                     </span>
-                                    Language : {{ $singleJob->language }}
+                                    <span style="color: #abbbd8">Language </span>
+                                     : {{ $singleJob->language }}
 
                                 </div>
 

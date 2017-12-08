@@ -5,7 +5,7 @@
                 <div class="navbar-header">
                     <a href="/" class="navbar-brand" style="font-size: 2em; font-family: 'Abel', sans-serif;; color: #ede3e3">
                         <i class="fa fa-briefcase" aria-hidden="true"></i>
-                        onlinejob.com</a>
+                        payjob.com</a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>

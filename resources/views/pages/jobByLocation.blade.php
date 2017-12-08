@@ -14,22 +14,22 @@
             <div class="col-md-8 col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-size: 16px; color: #879dbf ">
-                        Job by categories
+                        Job by location
                         {{--<i class="fa fa-chevron-right" style="color:#7190ba " aria-hidden="true"></i>--}}
                         <i class="fa fa-angle-right fa-lg" style="color:#b4b6ba" aria-hidden="true"></i>
 
-                        {{ $catLabel->name }}
+                        {{ $jobLocation->name }}
 
                     </div>
                     <div class="panel-body">
-                        @if(count($jobByCategory))
-                            @foreach($jobByCategory as $jobByCategories)
+                        @if(count($jobByLocation))
+                            @foreach($jobByLocation as $jobByLocations)
                                 <div class="row">
 
                                     <div class="col-md-2 col-sm-12">
                                         <div style="margin-left: 12px">
-                                            <a href="{{ route('singleJob',['id'=>$jobByCategories->id, 'company_id'=>$jobByCategories->company->id]) }}">
-                                                <img src="{{ asset($jobByCategories->company->logo) }} " alt="" style=" width: 80px; height: 75px " ></a>
+                                            <a href="{{ route('singleJob',['id'=>$jobByLocations->id, 'company_id'=>$jobByLocations->company->id]) }}">
+                                                <img src="{{ asset($jobByLocations->company->logo) }} " alt="" style=" width: 80px; height: 75px " ></a>
                                         </div>
                                     </div>
 
@@ -37,18 +37,18 @@
                                     <div class="col-md-10 col-sm-12">
                                         <div class="bs-component">
                                             <div class="list-group">
-                                                <a href="{{ route('singleJob',['id'=>$jobByCategories->id, 'company_id'=>$jobByCategories->company->id]) }}" >
-                                                    <p style="font-size: 18px"> {{ $jobByCategories->jobTitle }}</p>
+                                                <a href="{{ route('singleJob',['id'=>$jobByLocations->id, 'company_id'=>$jobByLocations->company->id]) }}" >
+                                                    <p style="font-size: 18px"> {{ $jobByLocations->jobTitle }}</p>
                                                 </a>
                                                 <button class="mybtn pull-right" style="margin-top: -20px">
-                                                    <a href="{{ route('singleJob',['id'=>$jobByCategories->id, 'company_id'=>$jobByCategories->company->id]) }}" >
+                                                    <a href="{{ route('singleJob',['id'=>$jobByLocations->id, 'company_id'=>$jobByLocations->company->id]) }}" >
                                                         View now</a>
                                                 </button>
                                                 <a href="#" >
                                                     <p style="font-size: 14px"><i class="fa fa-briefcase" aria-hidden="true"></i>
-                                                        {{ $jobByCategories->company->companyName }}
+                                                        {{ $jobByLocations->company->companyName }}
                                                         <small style="color: #8a92a0">|
-                                                            {{ Carbon\Carbon::createFromTimestamp(strtotime($jobByCategories->created_at))->diffForHumans() }}
+                                                            {{ Carbon\Carbon::createFromTimestamp(strtotime($jobByLocations->created_at))->diffForHumans() }}
                                                         </small>
 
 
@@ -61,7 +61,7 @@
                                                     <div class="col-md-3 col-sm-12">
                                                         <h5 style="color: #0DC2C9"><i class="fa fa-map-marker" aria-hidden="true"></i>
 
-                                                            {{ $jobByCategories->location->name }}
+                                                            {{ $jobByLocations->location->name }}
                                                         </h5>
                                                     </div>
                                                     <div class="col-md-3 col-sm-12">
@@ -70,7 +70,7 @@
 
                                                                 <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
 
-                                                                {{ Carbon\Carbon::createFromTimestamp(strtotime($jobByCategories->deadLine))->toFormattedDateString()}}
+                                                                {{ Carbon\Carbon::createFromTimestamp(strtotime($jobByLocations->deadLine))->toFormattedDateString()}}
                                                                 {{--{{ Carbon\Carbon::createFromTimestamp(strtotime($jobs->deadLine))->addDays(30)->diffForHumans()}}--}}
                                                                 {{--{{ Carbon\Carbon::now()->addDays(30)->diffForHumans()}}--}}
 
@@ -87,7 +87,7 @@
                                                         <h5 style="color: #0DC2C9"><i class="fa fa-id-card-o" aria-hidden="true"></i>
 
                                                             @foreach($countCategory as $countCategories)
-                                                                @if($countCategories->id == $jobByCategories->category_id)
+                                                                @if($countCategories->id == $jobByLocations->category_id)
                                                                     {{ $countCategories->name }}
                                                                 @endif
                                                             @endforeach
@@ -97,7 +97,7 @@
                                                     <div class="col-md-3 col-sm-12">
                                                         <h5 style="color: #0DC2C9"><i class="fa fa-clock-o" aria-hidden="true"></i>
                                                             @foreach($contractType as $contractTypes)
-                                                                @if($contractTypes->id == $jobByCategories->contractType_id)
+                                                                @if($contractTypes->id == $jobByLocations->contractType_id)
                                                                     {{ $contractTypes->name }}
                                                                 @endif
                                                             @endforeach
@@ -109,10 +109,12 @@
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach
+
                                 <div style="margin-bottom: 3.5em"></div>
                         @else
-                            <h3 style="color: #2a85a0">Whooope! We're sorry, there is no job by this category!</h3>
+                            <h3 style="color: #2a85a0">Whooope! We're sorry, there is no job by this location!</h3>
                             <div style="margin-bottom: 81.5em"></div>
                         @endif
 

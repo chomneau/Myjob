@@ -29,7 +29,16 @@ Route::get('/postjob', 'PagesController@getPostjob');
 //findjob
 Route::get('/findjob', 'FindJobController@index')->name('findjob');
 Route::get('/singleJob/{id}/{company_id}', 'FindJobController@show')->name('singleJob');
+
 Route::get('/jobByCategory/{id}', 'FindJobController@jobByCategory')->name('jobByCategory');
+Route::get('/allCategory/{id}', 'FindJobController@allCategory')->name('allCategory');
+
+//find by location
+Route::get('/jobByLocation/{id}', 'FindJobController@jobByLocation')->name('jobByLocation');
+Route::get('/allLocation', 'FindJobController@allLocation')->name('allLocation');
+
+Route::get('/jobByIndustry/{id}', 'FindJobController@jobByIndustry')->name('jobByIndustry');
+Route::get('/allIndustry', 'FindJobController@allIndustry')->name('allIndustry');
 
 //Route::get('/home', 'HomeController@index');
 //Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
