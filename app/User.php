@@ -47,4 +47,9 @@ class User extends Authenticatable
         return $this->hasMany('App\UserEducation');
     }
 
+    public function uploadcv()
+    {
+        return $this->hasMany(Uploadcv::class);
+    }
+
 }

@@ -57,6 +57,10 @@ Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logou
 //user route controller
 Route::get('/user/profile', 'ProfileController@index')->name('user.profile');
 Route::post('/user/profile/update', 'ProfileController@update')->name('user.profile.update');
+//upload CV
+Route::get('/user/uploadcv', 'UploadCvController@uploadCv')->name('user.uploadcv');
+Route::post('/user/uploadcvFunction', 'UploadCvController@uploadCvFunction')->name('user.uploadcvFunction');
+Route::get('/user/uploadcv/delete/{id}', 'UploadCvController@destroy')->name('user.cv.delete');
 
 
 Route::resource('/user', 'ProfileController');
@@ -185,6 +189,13 @@ Route::prefix('admin')->group(function (){
 //    Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 
 
+// employee route
+    Route::prefix('employee')->group(function () {
+
+        Route::get('/register', 'employee\EmployeeRegisterController@createRegister')->name('employee.register');
+        Route::get('/login', 'employee\EmployeeLoginController@showLoginForm')->name('employee.login');
+
+    });
 
 });
 

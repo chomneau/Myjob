@@ -13,21 +13,21 @@
                 <li><a href="{{route('home.profile')}}" class="text-center text-capitalize" style="font-size:20px ">
                         {{ Auth::user()->name }}</a></li>
                 <li>
-                    <a href="{{route('user.profile')}}">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <a href="{{route('user.profile', ['id'=>Auth::user()->profile->id])}}">
+                        <i class="fa fa-pencil" aria-hidden="true" style="color: #0BB9BF"></i>
                         Edit Profile
                     </a>
                 </li>
                 <li>
                     <a href="{{route('mycv.index')}}">
-                        <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                        <i class="fa fa-address-book-o" aria-hidden="true" style="color: #0BB9BF"></i>
                         My CV
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('user.create') }}">
-                        <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
-                        Create CV
+                    <a href="{{ route('user.uploadcv')}}">
+                        <i class="fa fa-upload" aria-hidden="true" style="color: #0BB9BF"></i>
+                        Upload your CV
                     </a>
                 </li>
             </ul>

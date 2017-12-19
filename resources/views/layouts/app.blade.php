@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Job') }}</title>
+    <title>{{ config('app.name', 'Pay Job') }}</title>
 
     <link href="https://fonts.googleapis.com/css?family=Abel|Anton|Squada+One" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
@@ -22,6 +22,10 @@
     <script type="text/javascript" src="{{URL::asset('assets/js/action.js')}}"></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    {{--Toastr notification--}}
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 
     @yield('styles')
 

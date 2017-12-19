@@ -3141,8 +3141,23 @@ select[multiple].input-lg {
     text-decoration: none;
 }
 
+.btnSubmit {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #ffffff;
+    border:0;
+    font-size: 16px;
+    font-weight: 500;
+    background: #39bfc4;
+    padding: 8px 18px 8px 18px;
+    text-decoration: none;
+}
 
-
+.btnSubmit:hover {
+    background: #39c2cc;
+    text-decoration: none;
+}
 
 
 .btn {

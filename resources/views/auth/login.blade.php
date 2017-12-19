@@ -53,7 +53,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btnSubmit">
                                     <strong><i class="fa fa-lock" aria-hidden="true"></i></strong>
                                     Login
                                 </button>

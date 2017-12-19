@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--}}
+
+{{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
 
 @extends('layouts.app')
 @section('content')
@@ -21,7 +21,8 @@
 
                                     <div class="col-md-2 col-sm-12">
                                         <div style="margin-left: 12px">
-                                            <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}"><img src="{{ asset($jobs->company->logo) }} " alt="" style=" width: 80px; height: 75px " ></a>
+                                            <a href="{{ route('singleJob',['id'=>$jobs->id, 'company_id'=>$jobs->company->id]) }}">
+                                                <img src="{{ asset($jobs->company->logo) }} " alt="" style=" width: 80px; height: 75px " ></a>
                                         </div>
                                     </div>
 

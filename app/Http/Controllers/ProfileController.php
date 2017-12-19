@@ -71,6 +71,9 @@ class ProfileController extends Controller
         //
     }
 
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -92,7 +95,6 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
-
         //upload image for user
         if($request->hasFile('avatar'))
         {
@@ -131,9 +133,9 @@ class ProfileController extends Controller
 
         return redirect('home');
 
-
-
+          //  return 12345;
     }
+
 
     /**
      * Remove the specified resource from storage.
