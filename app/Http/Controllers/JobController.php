@@ -34,7 +34,10 @@ class JobController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+
+            $this->middleware('auth:admin');
+           // $this->middleware('auth:employer');
+
         $this->category = Category::all();
         View::share('category', $this->category);
 

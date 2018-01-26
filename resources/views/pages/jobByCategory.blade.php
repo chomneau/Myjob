@@ -110,12 +110,14 @@
                                     </div>
                                 </div>
                             @endforeach
-                                <div style="margin-bottom: 3.5em"></div>
+
                         @else
                             <h3 style="color: #2a85a0">Whooope! We're sorry, there is no job by this category!</h3>
                             <div style="margin-bottom: 81.5em"></div>
                         @endif
-
+                            <div class="text-right">
+                                {!! $jobByCategory->links() !!}
+                            </div>
 
                         {{--@component('components.who')--}}
                         {{--@endcomponent--}}

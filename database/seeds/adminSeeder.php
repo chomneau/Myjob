@@ -11,11 +11,20 @@ class adminSeeder extends Seeder
      */
     public function run()
     {
+//        App\Admin::create([
+//            'name'=>'admin',
+//            'email'=>'admin@gmail.com',
+//            'password'=>bcrypt('admin123'),
+//            'job_title'=>'administrator'
+//        ]);
+
         App\Admin::create([
-            'name'=>'admin',
-            'email'=>'menchomneau@gmail.com',
-            'password'=>bcrypt('admin123'),
+            'name'=>'administrator',
+            'email'=>'administrator@gmail.com',
+            'password'=>bcrypt('123456'),
             'job_title'=>'administrator'
         ]);
     }
 }
+
+

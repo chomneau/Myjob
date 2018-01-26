@@ -112,7 +112,9 @@
 
                             @endforeach
 
-                                <div style="margin-bottom: 3.5em"></div>
+                                <div class="text-right">
+                                    {!! $jobByLocation->links() !!}
+                                </div>
                         @else
                             <h3 style="color: #2a85a0">Whooope! We're sorry, there is no job by this location!</h3>
                             <div style="margin-bottom: 81.5em"></div>

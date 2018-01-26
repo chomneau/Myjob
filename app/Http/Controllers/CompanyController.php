@@ -149,11 +149,6 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-
-
-       // $user = Auth::user();
-        //$jobLocation = Job::where('jobLocation', 'Phnom Penh')->count();
-
         $company = Company::find($id);
         return view('admin.company.company-profile')
             ->with([

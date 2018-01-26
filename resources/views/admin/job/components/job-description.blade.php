@@ -1,4 +1,5 @@
 {{--<div class="step1">--}}
+@include('admin.admin-layout.sectionstyle')
     <div class="row">
         <div class="form-group col-md-12">
             <label for="jobTitle">Job Title</label>

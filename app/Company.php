@@ -9,6 +9,17 @@ class Company extends Model
     public function admin(){
         return $this->belongsTo('App\Admin');
     }
+
+    public function employer(){
+        return $this->belongsTo('App\Employer');
+    }
+
+    //user
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+
     //company.php
     public function job(){
         return $this->hasMany(Job::class);

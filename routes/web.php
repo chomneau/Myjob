@@ -15,6 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/employer/login', 'Auth\EmployerLoginController@showLoginForm')->name('employer.login');
+Route::post('/employer/login', 'Auth\EmployerLoginController@employerLogin')->name('employer.login.submit');
+
+Route::get('/employer/register', 'Auth\EmployerRegisterController@showEmployerRegisterForm')->name('employer.register');
+Route::post('/employer/register', 'Auth\EmployerRegisterController@employerRegister')->name('employer.register.submit');
+Route::get('/employer/{id}', 'EmployerController@index')->name('employer.profile');
+Route::get('/employer', 'EmployerController@index')->name('employer.dashboard');
+
+Route::get('/employer/viewAllJobs', 'EmployerController@employeeAllJobs')->name('employer.viewAllJobs');
+Route::get('/employer/edit/{id}', 'EmployerController@edit')->name('employer.edit');
+Route::post('/employer/update/{id}', 'EmployerController@update')->name('employer.update');
+//change password for employer
+Route::get('/employer/changepassword/{id}', 'EmployerController@showPassForm')->name('employer.showPasswordForm');
+Route::post('/employer/changepassword/{id}', 'EmployerController@updatePassword')->name('employer.changePassword');
+
+//create job by employer
+Route::get('employer/createjob/post/{id}', 'EmployerJobController@create')->name('employer.createjob.create');
+Route::post('employer/createjob/{id}', 'EmployerJobController@store')->name('employer.createjob.postjob');
+Route::get('employer/createjob/edit/{id}/{company_id}', 'EmployerJobController@edit')->name('employer.createjob.edit');
+Route::post('employer/createjob/update/{id}/{company_id}', 'EmployerJobController@update')->name('employer.createjob.update');
+
+
 
 Route::get('/form', 'PagesController@form');
 Route::post('/form', 'PagesController@store');
@@ -190,12 +212,14 @@ Route::prefix('admin')->group(function (){
 
 
 // employee route
-    Route::prefix('employee')->group(function () {
+//    Route::prefix('employer')->group(function () {
+//
+//        //Route::get('/register', 'employer\EmployerRegisterController@createRegister')->name('employer.register');
+//        Route::get('/login', 'employer\EmployerLoginController@showLoginForm')->name('employer.login');
+//
+//    });
 
-        Route::get('/register', 'employee\EmployeeRegisterController@createRegister')->name('employee.register');
-        Route::get('/login', 'employee\EmployeeLoginController@showLoginForm')->name('employee.login');
-
-    });
+   // Route::get('/employer', 'EmployerControler@index');
 
 });
 

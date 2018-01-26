@@ -67,7 +67,8 @@ class FindJobController extends Controller
     public function index()
     {
 
-        $job = Job::with('company')->orderBy('created_at', 'Desc')->take(20)->get();
+        //$job = Job::with('company')->paginate(5);
+        $job = Job::with('company')->orderBy('created_at', 'Desc')->paginate(11);
         $location = Location::withCount('job')->take(7)->get();
         $category = Category::withCount('job')->take(7)->get();
         $industryType = IndustryType::withCount('company')->take(7)->get();
@@ -85,7 +86,7 @@ class FindJobController extends Controller
         $catLabel = Category::find($id);
 
         $jobByCategory = Job::with('company')
-            ->where('category_id', $id)->orderBy('created_at', 'Desc')->get();
+            ->where('category_id', $id)->orderBy('created_at', 'Desc')->paginate(11);
         return view('pages.jobByCategory')->with(['jobByCategory'=> $jobByCategory, 'catLabel'=>$catLabel]);
     }
 
@@ -95,7 +96,7 @@ class FindJobController extends Controller
         $jobLocation = Location::find($id);
 
         $jobByLocation = Job::with('company')
-            ->where('location_id', $id)->orderBy('created_at', 'Desc')->get();
+            ->where('location_id', $id)->orderBy('created_at', 'Desc')->paginate(11);
         return view('pages.jobByLocation')->with(['jobByLocation'=> $jobByLocation, 'jobLocation'=>$jobLocation]);
     }
 //Job by industry function
@@ -106,7 +107,7 @@ class FindJobController extends Controller
         $jobByIndustry = Company::with('industryType')
             ->where('industry_type_id', $id)->orderBy('created_at', 'Desc')->get();
         return $jobByIndustry;
-        //return view('pages.jobByIndustry')->with(['jobByIndustry'=> $jobByIndustry, 'jobIndustry'=>$jobIndustry]);
+       // return view('pages.jobByIndustry')->with(['jobByIndustry'=> $jobByIndustry, 'jobIndustry'=>$jobIndustry]);
     }
 
     public function jobByIndustry($id)
@@ -115,7 +116,7 @@ class FindJobController extends Controller
 
         $jobByIndustry = Job::whereHas('company', function ($query) use($id){
             $query->where('industry_type_id', $id);
-        })->orderBy('created_at', 'Desc')->get();
+        })->orderBy('created_at', 'Desc')->paginate(11);
 
         //return $jobByIndustry;
         return view('pages.jobByIndustry')->with(['jobByIndustry'=> $jobByIndustry, 'jobIndustry'=>$jobIndustry]);

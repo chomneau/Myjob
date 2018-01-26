@@ -102,8 +102,11 @@
                                     </div>
                             </div>
                         @endforeach
-                                <div style="margin-bottom: 3.5em"></div>
+                                {{--<div style="margin-bottom: 3.5em"></div>--}}
                         @endif
+                        <div class="text-right">
+                            {!! $job->links() !!}
+                        </div>
 
                             {{--@component('components.who')--}}
                             {{--@endcomponent--}}
