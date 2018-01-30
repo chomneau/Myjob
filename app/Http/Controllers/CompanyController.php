@@ -104,7 +104,7 @@ class CompanyController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'location' => 'required',
-            //'website' => 'required|url',
+            'website' => 'required|url',
             'address' => 'required'
         ]);
 
@@ -137,8 +137,12 @@ class CompanyController extends Controller
 
         Session::flash('success', 'You successfully updated your profile');
         return redirect('admin/company');
-//    $com = Company::all();
-//        return dd($com);
+
+
+   //$com = Company::all();
+//        $va = 5;
+//        $la = 4;
+//        return $va + $la;
     }
 
     /**

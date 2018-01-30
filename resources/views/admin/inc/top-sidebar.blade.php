@@ -11,38 +11,43 @@
                 @if(Auth::guard('admin')->check())
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('images/chomneau.jpg') }}" alt="admin">{{ Auth::user()->name }}
+                        <img src="{{ asset('uploads/logos/1510817755img.png') }}" alt="admin">{{ Auth::user()->name }}
                         <span class=" fa fa-angle-down"></span>
                     </a>
-                    <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="javascript:;"> Profile</a></li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="badge bg-red pull-right">50%</span>
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                        <li><a href="javascript:;">Help</a></li>
-                        <li>
-                            <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                Logout
-                            </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    </ul>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <li>
+
+                                <a href="/employer/{{ Auth()->user()->id }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    Profile</a></li>
+                            <li>
+                                <a href="{{ route('employer.showPasswordForm', ['id'=> Auth::user()->id]) }}">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <span>Change password</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+
                 </li>
                 @endif
 
                 @if(Auth::guard('employer')->check())
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('images/chomneau.jpg') }}" alt="admin">{{ Auth::user()->name }}
+                                <img src="{{ asset($company->logo) }}" alt="admin">{{ Auth::user()->name }}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -73,6 +78,8 @@
                         </li>
                 @endif
 
+
+        {{--
                 <li role="presentation" class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -137,6 +144,9 @@
                         </li>
                     </ul>
                 </li>
+
+                --}}
+
             </ul>
         </nav>
     </div>

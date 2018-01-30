@@ -30,7 +30,7 @@
                                             <div class="tab-pane active" role="tabpanel" id="step1">
                                                 @include('admin.company.form.form-create')
                                                 <ul class="list-inline pull-right">
-                                                    <li><button type="submit" class="btn btn-primary next-step">Create now</button></li>
+                                                    <li><button type="submit" class="btn btn-primary">Create now</button></li>
                                                 </ul>
                                             </div>
 

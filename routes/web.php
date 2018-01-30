@@ -11,13 +11,23 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+Route::get('/test', 'FindJobController@testform')->name('testform');
+Route::post('/test', 'FindJobController@storedata')->name('storedata');
 
+
+
+Route::get('/', 'FindJobController@index');
+
+
+//search route
+Route::get('/result', 'FindJobController@search')->name('result');
+//employer login
 Route::get('/employer/login', 'Auth\EmployerLoginController@showLoginForm')->name('employer.login');
 Route::post('/employer/login', 'Auth\EmployerLoginController@employerLogin')->name('employer.login.submit');
-
+//employer register
 Route::get('/employer/register', 'Auth\EmployerRegisterController@showEmployerRegisterForm')->name('employer.register');
 Route::post('/employer/register', 'Auth\EmployerRegisterController@employerRegister')->name('employer.register.submit');
 Route::get('/employer/{id}', 'EmployerController@index')->name('employer.profile');

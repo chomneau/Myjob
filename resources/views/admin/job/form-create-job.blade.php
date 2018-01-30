@@ -1,6 +1,6 @@
 {{--@include('admin.admin-layout.sectionstyle')--}}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+{{--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--}}
+{{--<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>--}}
 
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>
@@ -42,7 +42,7 @@
                                                @include('admin.job.components.job-detail')
                                                @include('admin.job.components.job-preferred-candidate')
                                                <ul class="list-inline pull-right">
-                                                   <li><button type="submit" class="btn btn-primary next-step">Post now</button></li>
+                                                   <li><button type="submit" class="btn btn-primary">Post now</button></li>
                                                </ul>
                                            </div>
                                        </div>

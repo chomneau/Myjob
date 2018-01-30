@@ -64,6 +64,25 @@ class FindJobController extends Controller
         View::share('preExperience', $this->preExperience);
     }
 
+    //testing
+    public function testform(){
+        return view('test');
+    }
+
+    public function storedata(Request $request){
+        $this->validate($request, [
+            'textarea' => 'required'
+        ]);
+        return 1234;
+
+    }
+
+
+
+
+
+
+
     public function index()
     {
 
@@ -79,6 +98,18 @@ class FindJobController extends Controller
             'countIndustry'=>$industryType,
         ]);
     }
+//Search job
+    public function search(){
+        $job = Job::where('jobTitle','like', '%'. request('query') .  '%')->paginate(10);
+
+        return view('search.result')->with('job', $job)
+            ->with('jobTitle', 'Search results :' .request('query'));
+          
+    }
+
+
+
+
 
 
     public function jobByCategory($id)

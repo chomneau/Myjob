@@ -105,9 +105,9 @@
                                         {{--</div>--}}
                                     </li>
                                     <li>
-                                        <strong>Industry Type :</strong>
+                                        <strong>Industry Type : </strong>
                                         @foreach($industryType as $indus)
-                                            @if($indus->id == $company->industryType_id)
+                                            @if($indus->id == $company->industry_type_id)
                                                 {{ $indus->name }}
                                             @endif
                                         @endforeach
@@ -217,8 +217,10 @@
                                                             <td>{{ $job->created_at->format('l F j, Y') }}</td>
                                                             <td class="hidden-phone">18</td>
                                                             <td class="vertical-align-mid">
-                                                                <a href="{{ route('createjob.show', ['id'=>$job->id, 'company_id'=>$company->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                                                <a href="{{ route('employer.createjob.edit', ['id'=>$job->id, 'company_id'=>$company->id]) }}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> edit </a>
+                                                                <a href="{{ route('singleJob',['id'=>$job->id, 'company_id'=>$job->company->id]) }}" target="_blank" class="btn btn-primary btn-xs">
+                                                                    <i class="fa fa-folder"></i> View </a>
+                                                                <a href="{{ route('employer.createjob.edit', ['id'=>$job->id, 'company_id'=>$company->id]) }}" class="btn btn-warning btn-xs">
+                                                                    <i class="fa fa-edit"></i> edit </a>
                                                                 {{--<a href="#" class="btn btn-danger btn-xs"><i class="fa fa-delete"></i> Delete </a>--}}
                                                             </td>
                                                         </tr>
@@ -270,7 +272,7 @@
 
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                                            <blockquote class="message">{{ $company->about }}</blockquote>
+                                            <blockquote class="message">{!! $company->about !!} </blockquote>
                                         </div>
                                     </div>
                                 </div>

@@ -137,7 +137,7 @@ class EmployerJobController extends Controller
         return redirect()->route('employer.dashboard', ['id'=>$company->id]);
 
 
-       //  return 123;
+ //       return 123;
 
 
     }

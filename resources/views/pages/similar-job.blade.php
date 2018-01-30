@@ -12,7 +12,7 @@
                 <div class="row">
             @if(count($similarJob))
                 @foreach($similarJob as $simJob)
-                    <a href="{{ route('singleJob',['id'=>$simJob->id, 'company_id'=>$simJob->company->id]) }}">
+                    <a href="{{ route('singleJob',['id'=>$simJob->id, 'company_id'=>$simJob->company->id]) }}" target="_blank">
                      <li class="list-group-item" style="padding-top: 10px;padding-bottom: 6em;padding-left: 0px;margin-left: 15px;right: 0px;left: 0px;padding-right: 0px;margin-right: 15px;" >
                         <div class="col-md-3">
                             <div style="margin-top: 10px">

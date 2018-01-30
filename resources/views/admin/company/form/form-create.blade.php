@@ -1,5 +1,5 @@
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+{{--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>--}}
+{{--<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>--}}
 
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 <script>
@@ -12,6 +12,7 @@
         browser_spellcheck: true,
     });
 </script>
+
     <div class="step1" style="margin-top: -20px">
             <div class="row">
                 <div class="col-md-6 {{ $errors->has('companyName') ? ' has-error' : '' }}">
@@ -108,7 +109,7 @@
         <div class="row">
             <div class="col-md-12 {{ $errors->has('about') ? ' has-error' : '' }}">
                 <label for="exampleInputEmail1">About Company</label>
-                <textarea name="about" id="" cols="15" rows="8" class="form-control" required autofocus>{{ $errors->has('about') ? ' has-error' : '' }}</textarea>
+                <textarea name="about" id="" cols="15" rows="8" class="form-control" >{{ $errors->has('about') ? ' has-error' : '' }}</textarea>
             </div>
         </div>
     </div>

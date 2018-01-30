@@ -22,6 +22,7 @@
     <script type="text/javascript" src="{{URL::asset('assets/js/action.js')}}"></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     {{--Toastr notification--}}

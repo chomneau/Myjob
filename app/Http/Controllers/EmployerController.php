@@ -68,6 +68,9 @@ class EmployerController extends Controller
         $this->preExperience = PreferredExperience::all();
         View::share('preExperience', $this->preExperience);
 
+//        $this->company = Company::all();
+//        View::share('company', $this->company);
+
 
 
     }
@@ -169,8 +172,10 @@ class EmployerController extends Controller
     //show password form
     public function showPassForm($id){
         $employer = Employer::find($id);
+        $company = Company::find($id);
         return view('employer.form.show-password-form')
-            ->with('employerPassword', $employer);
+            ->with('employerPassword', $employer)
+            ->with('company', $company);
     }
 
     //update password for employer
@@ -182,9 +187,11 @@ class EmployerController extends Controller
 
         $employer = Employer::findOrFail(Auth::user()->id);
 
+
         if (Hash::check(Input::get('oldPassword'), $employer['password']) && Input::get('password') == Input::get('password_confirmation')) {
             $employer->password = bcrypt(Input::get('password'));
             $employer->save();
+
             Session::flash('success', 'Password changed successfully!');
             return redirect('/employer');
         } else {

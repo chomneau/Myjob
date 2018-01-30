@@ -220,14 +220,14 @@
                             Job Description
                         </h3>
                         <hr style="margin-top: 3px; margin-left: 15px">
-                        <p style="font-size: 16px; margin-left: 30px">
+                        <p style="font-size: 16px; margin-left: 30px; width: 570px">
                             {!! $singleJob->jobDescription !!}
                         </p>
                         <h3 style="font-family: 'Roboto Condensed', sans-serif; font-size: 18px; margin-left: 15px">
                             Job Requirements
                         </h3>
                         <hr style="margin-top: 3px; margin-left: 1em">
-                        <p style="font-size: 16px; margin-left: 30px">
+                        <p style="font-size: 16px; margin-left: 30px; width: 550px">
                             {!! $singleJob->jobRequirement !!}
                         </p>
 
@@ -271,7 +271,7 @@
                         <hr style="margin-top: 3px; margin-left: 1em">
 
                         <p style="font-size: 16px; margin-left: 30px">
-                            {{ $company->about }}
+                            {!! $company->about !!}
                         </p>
 
 
