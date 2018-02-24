@@ -15,7 +15,7 @@
                 @include('user.editprofile')
             </div>
 
-            @include('inc.logoSlider')
+            {{--@include('inc.logoSlider')--}}
 
         </div>
     </div>

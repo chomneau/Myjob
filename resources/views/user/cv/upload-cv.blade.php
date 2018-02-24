@@ -20,7 +20,6 @@
                                 <div class="row">
                                     <div class="col-md-9 col-sm-12">
                                         <div class="form-group">
-
                                             <input type="file" id="BSbtninfo" name="upload" class="form-control" placeholder="upload your CV">
 
                                             <script>
@@ -86,7 +85,7 @@
 
                 </div>
                 {{--end col-md-9--}}
-                @include('inc.logoSlider')
+                {{--@include('inc.logoSlider')--}}
 
             </div>
         </div>

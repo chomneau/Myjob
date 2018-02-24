@@ -18,7 +18,7 @@
                         <ul class="dropdown-menu dropdown-usermenu pull-right">
                             <li>
 
-                                <a href="/employer/{{ Auth()->user()->id }}">
+                                <a href="/admin/adminProfile/{{ Auth()->user()->id }}">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Profile</a></li>
                             <li>
@@ -42,9 +42,9 @@
                         </ul>
 
                 </li>
-                @endif
+                {{--@endif--}}
 
-                @if(Auth::guard('employer')->check())
+                @elseif(Auth::guard('employer')->check())
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img src="{{ asset($company->logo) }}" alt="admin">{{ Auth::user()->name }}

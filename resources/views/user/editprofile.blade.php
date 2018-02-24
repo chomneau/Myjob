@@ -3,18 +3,18 @@
     <div class="bootstrap-iso">
             <form action="{{ route('user.profile.update') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <legend>EDIT PROFILE</legend>
+                <legend>CANDIDATE PROFILE <span style="font-family: 'Hanuman', serif; color: #0b97c4">(ព័ត៌មាន​ផ្ទាល់ខ្លួន​សង្ខេប)</span></legend>
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label class="control-label" for="firstName">First Name</label>
-                            <input type="text" name="firstName" value="{{ Auth::user()->profile->first_name}}" class="form-control" id="inputDefault" placeholder="First Name">
+                            <label class="control-label" for="firstName">First Name*</label>
+                            <input type="text" name="firstName" value="{{ Auth::user()->profile->first_name}}" class="form-control" id="inputDefault" placeholder="នាម​ខ្លួន">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label class="control-label" for="lastName">Last Name</label>
-                            <input type="text" name="lastName" value="{{ Auth::user()->profile->last_name}}" class="form-control" id="inputDefault" placeholder="Last Name">
+                            <label class="control-label" for="lastName">Last Name*</label>
+                            <input type="text" name="lastName" value="{{ Auth::user()->profile->last_name}}" class="form-control" id="inputDefault" placeholder="នាម​ត្រកូល">
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" value="{{ Auth::user()->email}}" name="email" id="inputEmail" placeholder="Enter your Email">
+                            <label for="email">Email*</label>
+                            <input type="text" class="form-control" value="{{ Auth::user()->email}}" name="email" id="inputEmail" placeholder="អ៊ីម៉ែល">
                         </div>
                     </div>
                 </div>
@@ -54,28 +54,7 @@
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
                             <label class="control-label" for="address">Phone*</label>
-                            <input type="number" class="form-control" value="{{ Auth::user()->profile->phone}}" name="phone" id="phone" placeholder="Enter phone number">
-                        </div>
-                    </div>
-                </div>
-                {{--end row--}}
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <label class="control-label" for="phone">Address*</label>
-                            <input type="TEXT" class="form-control" value="{{ Auth::user()->profile->address}}" name="address" id="address" placeholder="Enter address">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <label class="control-label" for="location">City / Province*</label>
-                            <div class="form-group">
-                                <select class="form-control" id="select" name="location">
-                                    <option value="Banteay Meanchey">Banteay Meanchey</option>
-                                </select>
-                            </div>
-
+                            <input type="number" class="form-control" value="{{ Auth::user()->profile->phone}}" name="phone" id="phone" placeholder="លេខទូរសព័្ទ">
                         </div>
                     </div>
                 </div>
@@ -86,34 +65,125 @@
                         <div class="form-group">
                             <label for="name">Upload new photo</label>
                             <input type="file" id="BSbtninfo" name="avatar" class="form-control">
-
                             <script>
                                 $('#BSbtninfo').filestyle({
                                     buttonName : 'btn-info',
-                                    buttonText : ' Select a File'
+                                    buttonText : 'Select a File'
                                 });
                             </script>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label class="control-label" for="location">Your Preferred job*</label>
+                            <label class="control-label" for="phone">Nationality*</label>
+                            <input type="TEXT" class="form-control" value="{{ Auth::user()->profile->nationality}}" name="nationality" id="address" placeholder="សញ្ជាតិ">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                {{--end row--}}
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="phone">Address*</label>
+                            <input type="TEXT" class="form-control" value="{{ Auth::user()->profile->address}}" name="address" id="address" placeholder="ទីលំនៅបច្ចុប្បន្ន">
+                        </div>
+                    </div>
+
+                </div>
+                {{--end row--}}
+
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-md-12">
+                        <legend>CAREER EXPECTATION <span style="font-family: 'Hanuman', serif; color: #0b97c4">(បំណងសម្រាប់​ការងារ​ចង់ធ្វើ)</span></legend>
+
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="location">Position*</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" value="{{ Auth::user()->profile->address}}" name="preferred-job" id="address" placeholder="Preferred Job">
+                                <input type="text" class="form-control" value="{{ Auth::user()->profile->position}}" name="position" id="address" placeholder="មុខតំណែង">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="location">Location*</label>
+                            <div class="form-group">
+                                <select name="location" id="heard" class="form-control" required>
+                                    <option value=""​>--ទីតាំងបំរើការងារ--</option>
+                                    @if(count($location))
+                                        @foreach($location as $locations)
+                                            <option value="{{ $locations->id }}"
+                                                    @if(Auth::user()->profile->location_id  == $locations->id)
+                                                    selected
+                                                    @endif
+                                            >{{ $locations->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                {{--end row--}}
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="location">Expected Salary*</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" value="{{ Auth::user()->profile->expected_salary}}" name="expected_salary" id="address" placeholder="ប្រាក់ខែរំពឹងទុក">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label" for="location">Experience*</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" value="{{ Auth::user()->profile->experience}}" name="experience" id="address" placeholder="ចំនួន​បទពិសោធន៍">
                             </div>
 
                         </div>
                     </div>
                 </div>
                 {{--end row--}}
-                <div class="row">
-                    <div class="col-lg-12 ">
-                         <textarea class="form-control" rows="5" name="bio" id="textArea" required autofocus>
-                              {{ Auth::user()->profile->bio}}
-                         </textarea>
-                        <span class="help-block">Describe about yourself</span>
+
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-md-12">
+                        <legend>UPLOAD YOUR CV AND COVER LETTER <span style="font-family: 'Hanuman', serif; color: #0b97c4">(ភ្ជាប់​ប្រវត្តិរូបសង្ខេប​របស់អ្នក)</span></legend>
+
                     </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="name">Upload your CV*</label>
+                            <input type="file" id="BSbtninfo" name="cv" class="form-control">
+                            <script>
+                                $('#BSbtninfo').filestyle({
+                                    buttonName : 'btn-info',
+                                    buttonText : 'Select a File'
+                                });
+                            </script>
+                        </div>
+                    </div>
+
                 </div>
+                {{--end row--}}
+
+                {{--<div class="row">--}}
+                    {{--<div class="col-lg-12 ">--}}
+                         {{--<textarea class="form-control" rows="5" name="bio" id="textArea" required autofocus>--}}
+                              {{--{{ Auth::user()->profile->bio}}--}}
+                         {{--</textarea>--}}
+                        {{--<span class="help-block">Describe about yourself</span>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 <div class="pull-right" style="margin-bottom: 50px">
                     <input type="submit" name="submit" value="update" class="btnSubmit pull-right" >

@@ -22,9 +22,14 @@ class CreateProfilesTable extends Migration
             $table->string('sex')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('phone')->nullable();
+            $table->string('nationality')->nullable();
             $table->string('address')->nullable();
-            $table->string('location')->nullable();
-            $table->Text('bio')->nullable();
+            $table->integer('location_id')->nullable();
+            $table->string('position')->nullable();
+            $table->string('expected_salary')->nullable();
+            $table->string('experience')->nullable();
+
+            //$table->Text('bio')->nullable();
             $table->timestamps();
         });
     }

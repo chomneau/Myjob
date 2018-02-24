@@ -212,6 +212,18 @@ Route::prefix('admin')->group(function (){
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 
 
+//user-admin profile
+    Route::get('/showAdminProfile/{id}', 'AdminController@showAdminProfile')->name('admin.adminProfile');
+    Route::get('/adminProfile/edit/{id}', 'AdminController@EditAdminProfileForm')->name('admin.adminProfile.edit');
+    Route::post('/adminProfile/edit/{id}', 'AdminController@updateAdminProfile')->name('admin.adminProfile.edit');
+    Route::get('/adminProfile/delete/{id}', 'AdminController@destroy')->name('admin.adminProfile.delete');
+
+    Route::get('/register', 'AdminController@showRegister')->name('admin.register');
+    Route::post('/register/user', 'AdminController@store')->name('admin.storeUser');
+
+    Route::get('/allUser', 'AdminController@showAllUser')->name('admin.showUsers');
+    Route::get('/adminProfile/{id}', 'AdminController@makeAdmin')->name('admin.makeAdmin');
+    Route::get('/adminProfileRemovePermission/{id}', 'AdminController@removePermission')->name('admin.removeAdmin');
 
 //    // Password reset routes
 //    Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');

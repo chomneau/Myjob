@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Profile;
+use App\Location;
 use Auth;
+use View;
 use Session;
+use App\Uploadcv;
 
 
 class ProfileController extends Controller
@@ -15,6 +18,9 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->location = Location::all();
+        View::share('location', $this->location);
     }
     /**
      * Display a listing of the resource.
@@ -90,7 +96,8 @@ class ProfileController extends Controller
             'email' => 'required|email',
             'date_of_birth' => 'required',
             'phone' => 'required',
-            'location' => 'required'
+            'cv' => 'required'
+
 
         ]);
 
@@ -115,9 +122,27 @@ class ProfileController extends Controller
         $user->profile->date_of_birth = $request->date_of_birth;
         $user->profile->phone = $request->phone;
         $user->profile->address = $request->address;
-        $user->profile->location = $request->location;
-        $user->profile->bio = $request->bio;
+        $user->profile->nationality = $request->nationality;
+        $user->profile->location_id = $request->location;
+        $user->profile->position = $request->position;
+        $user->profile->expected_salary = $request->expected_salary;
+        $user->profile->experience = $request->experience;
+       // $user->profile->bio = $request->bio;
         $user->profile->user_id = auth()->user()->id;
+
+        //upload cv and cover letter
+
+        $uploadCV = new Uploadcv;
+        if($request->hasFile('cv')) {
+            $upload = $request->cv;
+            $upload_new_name = date('gi') . "_" . $upload->getClientOriginalName();
+            //  $fileSize = File::size($upload);
+            $upload->move('uploads/cv', $upload_new_name);
+            $uploadCV->name = $upload_new_name;
+            // $uploadCV->fileSize = $fileSize;
+            $uploadCV->user_id = Auth::user()->id;
+            $uploadCV->save();
+        }
 
 
         $user->save();
@@ -143,8 +168,30 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function uploadCvFunction(Request $request){
+        $this->validate($request, [
+            'upload' => 'required'
+            //'upload' => 'required|mimes:pdf,doc,docx|size:5000'
+        ]);
+        $uploadCV = new Uploadcv;
+        if($request->hasFile('cv'))
+        {
+            $upload = $request->upload;
+            $upload_new_name = date('gi')."_".$upload->getClientOriginalName();
+            //  $fileSize = File::size($upload);
+            $upload->move('uploads/cv', $upload_new_name);
+            $uploadCV->name = $upload_new_name;
+            // $uploadCV->fileSize = $fileSize;
+            $uploadCV->user_id = Auth::user()->id;
+            $uploadCV->save();
+            Session::flash('success', 'You have upload your file successfully!');
+        }else{
+            Session::flash('success', 'You can not upload this file');
+        }
+
+        return redirect()->back();
     }
+
+
+
 }

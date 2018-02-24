@@ -15,14 +15,22 @@ class adminSeeder extends Seeder
 //            'name'=>'admin',
 //            'email'=>'admin@gmail.com',
 //            'password'=>bcrypt('admin123'),
-//            'job_title'=>'administrator'
+//            'admin'=>1
 //        ]);
 
-        App\Admin::create([
+        $admin = App\Admin::create([
             'name'=>'administrator',
             'email'=>'administrator@gmail.com',
-            'password'=>bcrypt('123456'),
-            'job_title'=>'administrator'
+            'password'=>bcrypt('administrator'),
+            'admin'=>1
+        ]);
+
+        App\AdminProfile::create([
+            'admin_id' => $admin->id,
+            'avatar'=> 'uploads/logos/1510817755img.png',
+            'address'=> '#207, St.2011, Sensok, Phnom Penh',
+            'phone'=>'015534040',
+            'about'=>'I am administrator on this page'
         ]);
     }
 }

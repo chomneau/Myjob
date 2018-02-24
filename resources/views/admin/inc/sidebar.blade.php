@@ -45,6 +45,14 @@
 
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-edit"></i> Users <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('admin.showUsers') }}">View all User</a></li>
+                            <li><a href="{{ route('admin.register') }}">Create new User</a></li>
+                            {{--<li><a href="{{ route('createjob.index') }}">View all post jobs</a></li>--}}
+
+                        </ul>
+                    </li>
 
 
 
@@ -122,8 +130,8 @@
         </div>
 
 
-    @endif
-    @if(Auth::guard('employer')->check())
+
+    @elseif(Auth::guard('employer')->check())
 
             <div class="profile clearfix">
                 <div class="profile_pic">

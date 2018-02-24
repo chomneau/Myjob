@@ -1,7 +1,7 @@
 {{--<link href="{{ asset('css/buttonStyle.css') }}" rel="stylesheet">--}}
 {{--<script type="text/javascript" src="{{URL::asset('js/buttonStyle.js')}}"></script>--}}
 @if ($paginator->hasPages())
-    <ul class="pagination pagination-lg">
+    <ul class="pagination pagination-xs">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="page-item disabled" style="color: #0BB9BF"><span>

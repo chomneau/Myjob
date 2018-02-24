@@ -5,7 +5,7 @@
                 <div class="navbar-header">
                     <a href="/" class="navbar-brand" style="font-size: 2em; font-family: 'Abel', sans-serif;; color: #ede3e3">
                         <i class="fa fa-briefcase" aria-hidden="true"></i>
-                        payjob.com</a>
+                        paysjob.com</a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -102,11 +102,13 @@
                                     <li><a href="{{ route('home.profile') }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
                                     <li class="divider"></li>
 
-                                    <li><a href="../home/mycv"><i class="fa fa-user" aria-hidden="true"></i> My CV</a></li>
-                                    <li class="divider"></li>
+                                    {{--<li><a href="../home/mycv"><i class="fa fa-user" aria-hidden="true"></i> My CV</a></li>--}}
+                                    {{--<li class="divider"></li>--}}
 
-                                    <li><a href="../home/applied"><i class="fa fa-user" aria-hidden="true"></i> Job applied</a></li>
-                                    <li class="divider"></li>
+                                    {{--<li><a href="../home/applied"><i class="fa fa-user" aria-hidden="true"></i> Job applied</a></li>--}}
+                                    {{--<li class="divider"></li>--}}
+
+
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();

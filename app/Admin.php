@@ -18,8 +18,14 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'job_title', 'job_location'
+        'name', 'email', 'password', 'admin', 'job_location'
     ];
+
+    //relationship with Admin-profile
+    public function Adminprofile(){
+        return $this->hasOne('App\Adminprofile');
+    }
+
 
     /**
      * The attributes that should be hidden for arrays.
