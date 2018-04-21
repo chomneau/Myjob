@@ -21,10 +21,23 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function getAbout()
     {
         return view('pages.about');
     }
+    //about page setting
+
+    public function aboutSetting(){
+        return view('admin.pageSetting.aboutSetting');
+    }
+
+
+
     public function getContact()
     {
         return view('pages.contact');

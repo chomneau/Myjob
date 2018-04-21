@@ -7,6 +7,9 @@ use App\AdminProfile;
 
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
 
 
 class AdminController extends Controller
@@ -91,12 +94,13 @@ class AdminController extends Controller
     //update admin profile method
     public function updateAdminProfile(Request $request, $id)
     {
+       // return 12345;
         $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'name' => 'required',
+            'email' => 'required|email|max:255',
             'address' => 'required',
             'phone' => 'required',
-            'avatar'=>'required'
+
         ]);
 
         $adminProfile = Admin::find($id);
@@ -148,6 +152,30 @@ class AdminController extends Controller
         $delete->delete();
         Session::flash('success', 'You have deleted user from the list');
         return redirect()->back();
+    }
+    //update password form
+    public function formUpdatePassword(){
+        return view('admin.admin-user.changeUserAdminPassword');
+    }
+    //update password for employer
+    public function updatePassword( Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $admin = Admin::findOrFail(Auth::user()->id);
+
+        if (Hash::check(Input::get('oldPassword'), $admin['password']) && Input::get('password') == Input::get('password_confirmation')) {
+            $admin->password = bcrypt(Input::get('password'));
+            $admin->save();
+
+            Session::flash('success', 'Password changed successfully!');
+            return redirect('/admin');
+        } else {
+            Session::flash('error', 'Your current password not match! Try Again');
+            return redirect()->back();
+        }
     }
 
 

@@ -221,7 +221,7 @@
                                                                 <i class="fa fa-folder"></i> View </a>
                                                             <a href="{{ route('createjob.edit', ['id'=>$job->id, 'company_id'=>$company->id]) }}" class="btn btn-warning btn-xs">
                                                                 <i class="fa fa-edit"></i> edit </a>
-                                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-delete"></i> Delete </a>
+                                                            <a href="{{ route('deletejob',['id'=>$job->id, 'company_id'=>$job->company->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-delete"></i> Delete </a>
                                                         </td>
                                                     </tr>
                                                     @endforeach

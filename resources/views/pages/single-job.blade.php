@@ -6,6 +6,7 @@
 
 @extends('layouts.app')
 @section('content')
+
     @include('inc.top-space')
     <div class="container" style="margin-top: 2em">
         <div class="row">
@@ -19,8 +20,8 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3">
-                                <div style="margin-left: 12px">
-                                    <a href="#"><img src="{{ asset($company->logo) }} " alt="" style=" width: 120px; height: 115px " ></a>
+                                <div style="margin-left: 12px; width: 120px; height: 115px">
+                                    <a href="#"><img src="{{ asset($company->logo) }} " alt="" style=" max-width: 100%; max-height: 100%" ></a>
                                 </div>
                                 <div class="row">
                                     {{--social media--}}
@@ -42,23 +43,26 @@
 
                                     {{--Location--}}
                                     <div class="col-md-12" style="margin-top: 15px; margin-left: 15px; margin-bottom: 5px">
-                                        <span style="color: #00AEEF">
-                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                        </span>
+                                        {{--<span style="color: #00AEEF">--}}
+                                            {{--<i class="fa fa-map-marker" aria-hidden="true"></i>--}}
+                                        {{--</span>--}}
 
-                                        {{ $singleJob->location->name }}
+                                        {{--{{ $singleJob->location->name }}--}}
                                     </div>
                                     {{--Deadline--}}
                                     <div class="col-md-12" style="color: #FF6666; margin-left: 15px;">
-                                        <a href="#" data-toggle="tooltip" title="Deadline!">
-                                            <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
-                                            {{ Carbon\Carbon::createFromTimestamp(strtotime($singleJob->deadLine))->toFormattedDateString()}}
-                                        </a>
-                                        <script>
-                                            $(document).ready(function(){
-                                                $('[data-toggle="tooltip"]').tooltip();
-                                            });
-                                        </script>
+                                        {{----}}
+                                        {{--<a href="#" data-toggle="tooltip" title="Deadline!">--}}
+                                            {{--<i class="fa fa-calendar-times-o" aria-hidden="true"></i>--}}
+                                            {{--{{ Carbon\Carbon::createFromTimestamp(strtotime($singleJob->deadLine))->toFormattedDateString()}}--}}
+                                        {{--</a>--}}
+                                        {{--<script>--}}
+                                            {{--$(document).ready(function(){--}}
+                                                {{--$('[data-toggle="tooltip"]').tooltip();--}}
+                                            {{--});--}}
+                                        {{--</script>--}}
+                                        {{----}}
+
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +98,7 @@
 
                                                 </div>
                                                 <div class="col-md-6" style="margin-top: 35px; padding-right: 25px">
-                                                    <button class="btn-apply pull-right">Apply Now !</button>
+                                                    {{--<button class="btn-apply pull-right">Apply Now !</button>--}}
                                                 </div>
                                             </div>
 
@@ -152,85 +156,112 @@
                                             <span style="color: #00AEEF">
                                                <i class="fa fa-user" aria-hidden="true"></i> Hire :
                                             </span>
-                                             {{ $singleJob->hire }} <span style="color: #abbbd8">pos(s)</span>
+                                             {{ $singleJob->hire }} <span style="color: #abbbd8">post(s)</span>
                                         </div>
 
                                     </div>
+                {{-------------------------}}
                                 <h3 style="font-family: 'Roboto Condensed', sans-serif; font-size: 18px">
-                                    Preferred Candidate</h3>
+                                    {{--Preferred Candidate--}}
+                                </h3>
                                 <hr style="margin-top: 3px">
                                 {{--Preferred level--}}
-                                <div class="col-md-6 col-sm-6" style="margin-bottom: 10px">
-                                    @if(count($level))
-                                        @foreach($level as $levels)
-                                            @if($levels->id == $singleJob->level_id)
-                                                <span style="color: #00AEEF">
-                                                   <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
-                                                </span>
-                                                <span style="color: #abbbd8">Level </span> : {{ $levels->name }}
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                <div class="col-md-6 col-sm-6" style="margin-bottom: 10px; margin-left: -10px; margin-top: -10px">
+                                        <span style="color: #00AEEF">
+                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        </span>
+                                        Location:
+                                        {{ $singleJob->location->name }}
+
+
+                                    {{--@if(count($level))--}}
+                                        {{--@foreach($level as $levels)--}}
+                                            {{--@if($levels->id == $singleJob->level_id)--}}
+                                                {{--<span style="color: #00AEEF">--}}
+                                                   {{--<i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>--}}
+                                                {{--</span>--}}
+                                                {{--<span style="color: #abbbd8">Level </span> : {{ $levels->name }}--}}
+                                            {{--@endif--}}
+                                        {{--@endforeach--}}
+                                    {{--@endif--}}
                                 </div>
                                 {{--Degree--}}
-                                <div class="col-md-6 col-sm-6" style="margin-bottom: 10px">
-                                    @if(count($degree))
-                                        @foreach($degree as $degrees)
-                                            @if($degrees->id == $singleJob->degree_id)
-                                                <span style="color: #00AEEF">
-                                                   <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                </span>
-                                                <span style="color: #abbbd8">Degree </span>
-                                                 : {{ $degrees->name }}
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                <div class="col-md-6 col-sm-6" style="margin-bottom: 10px; margin-top: -10px">
+
+                                    <a href="#" data-toggle="tooltip" title="Deadline!" style="color: #e0044a;">
+                                        <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+                                        Closing date: 
+                                        {{ Carbon\Carbon::createFromTimestamp(strtotime($singleJob->deadLine))->toFormattedDateString()}}
+                                    </a>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('[data-toggle="tooltip"]').tooltip();
+                                        });
+                                    </script>
+
+
+                                    {{--@if(count($degree))--}}
+                                        {{--@foreach($degree as $degrees)--}}
+                                            {{--@if($degrees->id == $singleJob->degree_id)--}}
+                                                {{--<span style="color: #00AEEF">--}}
+                                                   {{--<i class="fa fa-graduation-cap" aria-hidden="true"></i>--}}
+                                                {{--</span>--}}
+                                                {{--<span style="color: #abbbd8">Degree </span>--}}
+                                                 {{--: {{ $degrees->name }}--}}
+                                            {{--@endif--}}
+                                        {{--@endforeach--}}
+                                    {{--@endif--}}
                                 </div>
 
                                 {{--Experience--}}
                                 <div class="col-md-6 col-sm-6">
-                                    @if(count($preExperience))
-                                        @foreach($preExperience as $preExperiences)
-                                            @if($preExperiences->id == $singleJob->job_experience_id)
-                                                <span style="color: #00AEEF">
-                                                   <i class="fa fa-sliders" aria-hidden="true"></i>
-                                                </span>
-                                                <span style="color: #abbbd8">Experience </span>
-                                                 : {{ $preExperiences->name }}
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                    {{--@if(count($preExperience))--}}
+                                        {{--@foreach($preExperience as $preExperiences)--}}
+                                            {{--@if($preExperiences->id == $singleJob->job_experience_id)--}}
+                                                {{--<span style="color: #00AEEF">--}}
+                                                   {{--<i class="fa fa-sliders" aria-hidden="true"></i>--}}
+                                                {{--</span>--}}
+                                                {{--<span style="color: #abbbd8">Experience </span>--}}
+                                                 {{--: {{ $preExperiences->name }}--}}
+                                            {{--@endif--}}
+                                        {{--@endforeach--}}
+                                    {{--@endif--}}
                                 </div>
 
                                 {{--Experience--}}
                                 <div class="col-md-6 col-sm-6">
 
-                                  <span style="color: #00AEEF">
-                                       <i class="fa fa-language" aria-hidden="true"></i>
-                                    </span>
-                                    <span style="color: #abbbd8">Language </span>
-                                     : {{ $singleJob->language }}
+                                  {{--<span style="color: #00AEEF">--}}
+                                       {{--<i class="fa fa-language" aria-hidden="true"></i>--}}
+                                    {{--</span>--}}
+                                    {{--<span style="color: #abbbd8">Language </span>--}}
+                                     {{--: {{ $singleJob->language }}--}}
 
                                 </div>
 
                             </div>
                         </div>
 
+                {{--------------------------}}
+
 
                         <h3 style="font-family: 'Roboto Condensed', sans-serif; font-size: 18px; margin-left: 15px">
                             Job Description
                         </h3>
                         <hr style="margin-top: 3px; margin-left: 15px">
-                        <p style="font-size: 16px; margin-left: 30px; width: 570px">
+                        <div style="font-size: 12px; margin-left: 30px; width: 570px; margin-top: 1px; margin-bottom: 1px">
                             {!! $singleJob->jobDescription !!}
-                        </p>
+                        </div>
                         <h3 style="font-family: 'Roboto Condensed', sans-serif; font-size: 18px; margin-left: 15px">
                             Job Requirements
                         </h3>
                         <hr style="margin-top: 3px; margin-left: 1em">
-                        <p style="font-size: 16px; margin-left: 30px; width: 550px">
-                            {!! $singleJob->jobRequirement !!}
-                        </p>
+                        <div class="jobDescription" style="font-size: 12px; margin-left: 30px; margin-top: 1px; margin-bottom: 1px line-height: 17px; width: 550px">
+
+                                {!! $singleJob->jobRequirement !!}
+
+
+                        </div>
 
                         <h3 style="font-family: 'Roboto Condensed', sans-serif; font-size: 18px; margin-left: 1em">
                             Contact Info
@@ -240,11 +271,11 @@
                         <table class="table table-sm" style="margin-left: 30px; margin-top: -10px">
 
                             <tbody>
-                            <tr >
+                            <tr style="margin-bottom: -10px" >
                                 <td style="font-weight: 500; color:#84888e">Contact Person</td>
                                 <td width="75%">: {{ $company->contactPerson }}</td>
                             </tr>
-                            <tr>
+                            <tr >
                                 <td style="font-weight: 500; color:#84888e">Phone</td>
                                 <td width="80%">: {{ $company->phone }}</td>
                             </tr>
@@ -271,7 +302,7 @@
                         </h3>
                         <hr style="margin-top: 3px; margin-left: 1em">
 
-                        <p style="font-size: 16px; margin-left: 30px">
+                        <p style="font-size: 14px; margin-left: 30px">
                             {!! $company->about !!}
                         </p>
 
@@ -290,4 +321,5 @@
 
         </div>
     </div>
+
 @endsection

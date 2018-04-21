@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\AdminResetPasswordNotification;
 use App\Category;
+use App\AdminProfile;
 
 class Admin extends Authenticatable
 {
@@ -23,7 +24,7 @@ class Admin extends Authenticatable
 
     //relationship with Admin-profile
     public function Adminprofile(){
-        return $this->hasOne('App\Adminprofile');
+        return $this->hasOne(Adminprofile::class);
     }
 
 

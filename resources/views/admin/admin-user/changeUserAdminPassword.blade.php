@@ -7,7 +7,7 @@
             <div class="clearfix"></div>
 
             <div class="row">
-                <form role="form" class="form-group" action="{{ route('employer.changePassword', ['id'=>Auth()->user()->id]) }}" method="post" enctype="multipart/form-data">
+                <form role="form" class="form-group" action="{{ route('admin.updatepassword', ['id'=>Auth()->user()->id]) }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
 
                     <div class="panel col-md-8 col-md-offset-2">

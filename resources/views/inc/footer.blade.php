@@ -8,31 +8,50 @@
             <div class="col-lg-3 col-md-3 col-sm-12">
 
                 <div class="footer-list">
-                    <h4>FOR JOB SEEKERS</h4>
+                    <h4>ABOUT US</h4>
                 </div>
                 <div class="footer-list-link">
-                    <ul class="item-list">
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Create perfect CV</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Searching Jobs</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> How to find job</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Subscribe</a></li>
-                    </ul>
+                   <p style="color:#FFFFFF; font-size: 16px">The web site was established in January 2018. We are a specialist recruitment platform and helping job seekers to find jobs in Cambodia and employers to hire the best talented person for the job. We know... </p>
                 </div>
+
+                {{--<div class="footer-list">--}}
+                    {{--<h4>FOR JOB SEEKERS</h4>--}}
+                {{--</div>--}}
+                {{--<div class="footer-list-link">--}}
+                    {{--<ul class="item-list">--}}
+                        {{--<li style="list-style: none"  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Create perfect CV</a></li>--}}
+                        {{--<li style="list-style: none"  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Searching Jobs</a></li>--}}
+                        {{--<li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> How to find job</a></li>--}}
+                        {{--<li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Subscribe</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
             </div>
 
             {{--select category--}}
             <div class=" col-lg-3 col-md-3 col-sm-12">
                 <div class="footer-list">
-                    <h4>FOR EMPLOYERS</h4>
+                    <h4>CONTACT US</h4>
                 </div>
                 <div class="footer-list-link">
                     <ul class="item-list">
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Post Jobs</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Search seekers</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Employer's policy</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Tips for recruiting</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-phone-square"></i>  (+855) 70 900 928 </a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-envelope"></i> job@paysjob.com</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-globe"></i> www.paysjob.com</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> more...</a></li>
                     </ul>
                 </div>
+
+                {{--<div class="footer-list">--}}
+                    {{--<h4>FOR EMPLOYERS</h4>--}}
+                {{--</div>--}}
+                {{--<div class="footer-list-link">--}}
+                    {{--<ul class="item-list">--}}
+                        {{--<li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Post Jobs</a></li>--}}
+                        {{--<li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Search seekers</a></li>--}}
+                        {{--<li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Employer's policy</a></li>--}}
+                        {{--<li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Tips for recruiting</a></li>--}}
+                    {{--</ul>--}}
+                {{--</div>--}}
 
             </div>
 
@@ -44,10 +63,10 @@
                 </div>
                 <div class="footer-list-link">
                     <ul class="item-list">
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> About us</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Contact us</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Our blog</a></li>
-                        <li  ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Our Training</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> About us</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Contact us</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Our blog</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Our Training</a></li>
                     </ul>
                 </div>
 
@@ -60,11 +79,11 @@
                 </div>
                 <div class="footer-list-link">
                     <ul class="item-list">
-                        <li  ><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
-                        <li  ><a href="#">
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook</a></li>
+                        <li style="list-style: none" ><a href="#">
                                 <i class="fa fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
-                        <li  ><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i> Linkedin</a></li>
-                        <li ><a href="#"><i class="fa fa-youtube-square" aria-hidden="true"></i> youtube</a></li>
+                        <li style="list-style: none" ><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i> Linkedin</a></li>
+                        <li style="list-style: none"><a href="#"><i class="fa fa-youtube-square" aria-hidden="true"></i> youtube</a></li>
                     </ul>
                 </div>
 

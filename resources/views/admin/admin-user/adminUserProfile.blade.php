@@ -28,7 +28,7 @@
                             {{--start col-container--}}
                             <div class="col-md-10 " style="margin-top: 2em">
                                 <div class="col-md-3">
-                                    <img src="{{ asset($adminProfile->adminprofile->avatar) }}" alt="user profile" width="150" height="150">
+                                    <img src="{{ asset($adminProfile->AdminProfile->avatar) }}" alt="user profile" width="150" height="150">
 
                                 </div>
 
@@ -79,13 +79,12 @@
 
                                                                     @endif
 
-
                                                             </a>
                                                         </li>
                                                         <li><i class="fa fa-phone-square"></i>
-                                                            <a href="#">Phone : {{ $adminProfile->adminprofile->phone }}</a> </li>
+                                                            <a href="#">Phone : {{ $adminProfile->Adminprofile->phone }}</a> </li>
                                                         <li><i class="glyphicon glyphicon-home"></i>
-                                                            <a href="#">Address : {{ $adminProfile->adminprofile->address }}</a>
+                                                            <a href="#">Address : {{ $adminProfile->Adminprofile->address }}</a>
                                                         </li>
 
 

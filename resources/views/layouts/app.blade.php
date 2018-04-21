@@ -8,7 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Pay Job') }}</title>
+
+    <title>paysjob.com</title>
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon-32x32.png') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Abel|Anton|Squada+One" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
@@ -36,14 +39,9 @@
 <body style="background-color: #F8F4F4 ">
         {{--@include('inc.navbar')--}}
    @include('inc.navbar')
-
     @yield('content')
 
-
-
      @include('inc.footer')
-
-
 
     <!-- Scripts -->
     @yield('scripts')

@@ -11,7 +11,7 @@
 
             {{--Listing job in the right side--}}
 
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-9 col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-size: 16px; color: #879dbf ">
                         Job by location
@@ -40,10 +40,15 @@
                                                 <a href="{{ route('singleJob',['id'=>$jobByLocations->id, 'company_id'=>$jobByLocations->company->id]) }}" >
                                                     <p style="font-size: 18px"> {{ $jobByLocations->jobTitle }}</p>
                                                 </a>
-                                                <button class="mybtn pull-right" style="margin-top: -20px">
-                                                    <a href="{{ route('singleJob',['id'=>$jobByLocations->id, 'company_id'=>$jobByLocations->company->id]) }}" >
-                                                        View now</a>
-                                                </button>
+
+                                                <div class=" pull-right" style="margin-top: 0px; margin-right: 10px; color:#C97975">
+                                                    <i class="fa fa-calendar-times-o" aria-hidden="true"></i> closing date:
+                                                    {{ Carbon\Carbon::createFromTimestamp(strtotime($jobByLocations->deadLine))->toFormattedDateString()}}
+                                                </div>
+                                                {{--<button class="mybtn pull-right" style="margin-top: -20px">--}}
+                                                    {{--<a href="{{ route('singleJob',['id'=>$jobByLocations->id, 'company_id'=>$jobByLocations->company->id]) }}" >--}}
+                                                        {{--View now</a>--}}
+                                                {{--</button>--}}
                                                 <a href="#" >
                                                     <p style="font-size: 14px"><i class="fa fa-briefcase" aria-hidden="true"></i>
                                                         {{ $jobByLocations->company->companyName }}
@@ -65,25 +70,7 @@
                                                         </h5>
                                                     </div>
                                                     <div class="col-md-3 col-sm-12">
-                                                        <a href="#" data-toggle="tooltip" title="Deadline!">
-                                                            <h5 style="color: #C97975">
 
-                                                                <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
-
-                                                                {{ Carbon\Carbon::createFromTimestamp(strtotime($jobByLocations->deadLine))->toFormattedDateString()}}
-                                                                {{--{{ Carbon\Carbon::createFromTimestamp(strtotime($jobs->deadLine))->addDays(30)->diffForHumans()}}--}}
-                                                                {{--{{ Carbon\Carbon::now()->addDays(30)->diffForHumans()}}--}}
-
-                                                            </h5>
-                                                        </a>
-
-                                                        <script>
-                                                            $(document).ready(function(){
-                                                                $('[data-toggle="tooltip"]').tooltip();
-                                                            });
-                                                        </script>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-12">
                                                         <h5 style="color: #0DC2C9"><i class="fa fa-id-card-o" aria-hidden="true"></i>
 
                                                             @foreach($countCategory as $countCategories)
@@ -93,9 +80,37 @@
                                                             @endforeach
 
                                                         </h5>
+                                                        {{--<a href="#" data-toggle="tooltip" title="Deadline!">--}}
+                                                            {{--<h5 style="color: #C97975">--}}
+
+                                                                {{--<i class="fa fa-calendar-times-o" aria-hidden="true"></i>--}}
+
+                                                                {{--{{ Carbon\Carbon::createFromTimestamp(strtotime($jobByLocations->deadLine))->toFormattedDateString()}}--}}
+                                                                {{--{{ Carbon\Carbon::createFromTimestamp(strtotime($jobs->deadLine))->addDays(30)->diffForHumans()}}--}}
+                                                                {{--{{ Carbon\Carbon::now()->addDays(30)->diffForHumans()}}--}}
+
+                                                            {{--</h5>--}}
+                                                        {{--</a>--}}
+
+                                                        <script>
+                                                            $(document).ready(function(){
+                                                                $('[data-toggle="tooltip"]').tooltip();
+                                                            });
+                                                        </script>
                                                     </div>
                                                     <div class="col-md-3 col-sm-12">
-                                                        <h5 style="color: #0DC2C9"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        {{--<h5 style="color: #0DC2C9"><i class="fa fa-id-card-o" aria-hidden="true"></i>--}}
+
+                                                            {{--@foreach($countCategory as $countCategories)--}}
+                                                                {{--@if($countCategories->id == $jobByLocations->category_id)--}}
+                                                                    {{--{{ $countCategories->name }}--}}
+                                                                {{--@endif--}}
+                                                            {{--@endforeach--}}
+
+                                                        {{--</h5>--}}
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-12">
+                                                        <h5 style="color: #0DC2C9; margin-left: -30px"><i class="fa fa-clock-o" aria-hidden="true"></i>
                                                             @foreach($contractType as $contractTypes)
                                                                 @if($contractTypes->id == $jobByLocations->contractType_id)
                                                                     {{ $contractTypes->name }}

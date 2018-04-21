@@ -53,6 +53,9 @@ Route::post('/form', 'PagesController@store');
 
 Auth::routes();
 Route::get('/about', 'PagesController@getAbout');
+Route::get('/about/setting', 'PagesController@aboutSetting')->name('about.setting');
+Route::post('/about/setting', 'PagesController@aboutPageSetting')->name('about.pageSetting');
+
 Route::get('/contact', 'PagesController@getContact');
 
 Route::get('/postjob', 'PagesController@getPostjob');
@@ -191,6 +194,7 @@ Route::prefix('admin')->group(function (){
     Route::post('/createjob/{id}', 'JobController@store')->name('createjob.postjob');
     Route::get('/createjob/edit/{id}/{company_id}', 'JobController@edit')->name('createjob.edit');
     Route::post('/createjob/update/{id}/{company_id}', 'JobController@update')->name('createjob.update');
+    Route::get('/delete/{id}/{company_id}', 'JobController@destroy')->name('deletejob');
 
     //company controller
     Route::resource('/company', 'CompanyController');
@@ -224,6 +228,11 @@ Route::prefix('admin')->group(function (){
     Route::get('/allUser', 'AdminController@showAllUser')->name('admin.showUsers');
     Route::get('/adminProfile/{id}', 'AdminController@makeAdmin')->name('admin.makeAdmin');
     Route::get('/adminProfileRemovePermission/{id}', 'AdminController@removePermission')->name('admin.removeAdmin');
+
+    //update admin password
+
+    Route::get('/updatePassword/{id}', 'AdminController@formUpdatePassword')->name('admin.updatepassword');
+    Route::post('/updatePassword/{id}', 'AdminController@updatePassword');
 
 //    // Password reset routes
 //    Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');

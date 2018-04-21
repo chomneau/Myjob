@@ -161,7 +161,7 @@ class JobController extends Controller
     {
         $job = Job::find($id);
         $company = Company::find($company_id);
-        return view('admin.job.edit-job')->with(['job'=>$job, 'company'=>$company]);
+        return view('admin.job.editjobs')->with(['job'=>$job, 'company'=>$company]);
     }
 
     /**

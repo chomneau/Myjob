@@ -1,4 +1,4 @@
-<div class="col-md-4 col-sm-12 pull-left">
+<div class="col-md-3 col-sm-12 pull-left">
     {{--Category--}}
     <div class="bs-component">
         <ul class="list-group">

@@ -54,6 +54,15 @@
                         </ul>
                     </li>
 
+                    <li><a><i class="fa fa-edit"></i> Page setting <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('about.setting') }}">About</a></li>
+                            <li><a href="{{ route('admin.register') }}">Contact</a></li>
+                            {{--<li><a href="{{ route('createjob.index') }}">View all post jobs</a></li>--}}
+
+                        </ul>
+                    </li>
+
 
 
                     <li><a><i class="fa fa-sliders"></i> Setting <span class="fa fa-chevron-down"></span></a>

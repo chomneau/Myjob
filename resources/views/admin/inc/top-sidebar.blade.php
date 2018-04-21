@@ -22,7 +22,7 @@
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Profile</a></li>
                             <li>
-                                <a href="{{ route('employer.showPasswordForm', ['id'=> Auth::user()->id]) }}">
+                                <a href="{{ route('admin.updatepassword', ['id'=> Auth::user()->id]) }}">
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                     <span>Change password</span>
                                 </a>

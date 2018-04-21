@@ -1433,15 +1433,24 @@ ol ol {
 }
 .list-unstyled {
     padding-left: 0;
-    list-style: none
+    list-style: disc;
 }
 .list-inline {
     padding-left: 0;
     list-style: none;
     margin-left: -5px
 }
+.jobDescription ul li{
+    margin: 0;
+    padding: 0;
+    list-style: circle;
+}
+
+
+
+
 .list-inline>li {
-    display: inline-block;
+    display: list-item;
     padding-left: 5px;
     padding-right: 5px
 }
